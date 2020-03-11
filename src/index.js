@@ -39,31 +39,23 @@ app.use(require('./routes/index'));
 
 /**
  * @swagger
- * /customers:
+ * /documents:
  *  get:
  *      description: Use to request all customers
- *      reponses: 
+ *      responses: 
  *          '200':
  *             description: A succeful response
  */
-app.get("/customers", (req, res) => {
-    console.log("request");
-    res.status(200).send("Customer results"); 
-});
 
 /**
  * @swagger
- * /customer:
+ * /document:
  *  put:
  *      description: Use to update a customers
- *      reponses: 
+ *      responses: 
  *          '201':
  *             description: A succeful response
  */
-app.put("/customer", (req, res) => {
-    console.log("request");
-    res.status(201).send("Succssefully update customer"); 
-});
 
 
 
