@@ -13,12 +13,12 @@ app.set('json spaces', 2);
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: 'GPSA - Api - Banco Entre Rios',
-            description: "",
+            title: 'GPSA - Api - Banco Santa Fe',
+            description: "Descripcion Endpoints Banco Santa Fe",
             contact:{
                 name: "Banco Entre Rios"
             },
-            servers: ["http://ñpcalhost:3000"]
+            servers: ["http://localhost:3000"]
         }
     },
     apis: ['src/index.js']
@@ -35,7 +35,7 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // ---> Routes
-app.use(require('./routes/index'));
+app.use('/v1/ber', require('./routes/index'));
 
 /**
  * @swagger

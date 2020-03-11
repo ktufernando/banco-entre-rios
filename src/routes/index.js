@@ -2,18 +2,62 @@ const { Router } = require('express');
 const router = Router(); 
 
 
-router.post("/verificarCuit", (req, res) => {
-    res.status(200).send("Cuit Validado"); 
+
+// ---> GET
+router.get('/acaparaCreditos', async (req, res) => {
+    response = {
+        error: false,
+        status: 200,
+        message: 'Datos obtenidos con exito'
+    };
+    res.json(response);
 });
 
-router.post("/validarInscripcion", (req, res) => {
-    console.log("request");
-    res.status(200).send("Documents results"); 
-});
+// ---> POST ---> Cuit
+router.post("/verificarCuit", async (req, res) => {
+    const cuit = req.body;
+    let response = {};
 
-router.post("/document", (req, res) => {
-    console.log("request");
-    res.status(200).send("Documents results"); 
-});
+    if (!cuit) {
+    response = {
+        error: true,
+        status: 502,
+        message: "El campo documento es requeridos"
+    };
+    return res.json(response);
+    }
+    response = {
+    error: false,
+    status: 200,
+    message: "Cuit Validado",
+    response: cuit
+    };
+    
+    return res.json(response);
+}); 
+
+// ---> POST ---> Inscripcion
+router.post("/validarInscripcion", async (req, res) => {
+    const formData = req.body;
+    let respuesta = {};
+
+    if (!formData) {
+    response = {
+        error: true,
+        status: 502,
+        message: "Todos los campos son requeridos requeridos"
+    };
+    return res.json(response);
+    }
+    response = {
+    error: false,
+    status: 200,
+    message: "Inscripcion Validada",
+    response: formData 
+    };
+    
+    return res.json(response);
+}); 
+
 
 module.exports = router;
