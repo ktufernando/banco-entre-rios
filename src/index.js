@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 const morgan = require('morgan');
-const swaggerjsDocs = require('swagger-jsdoc');
+const swaggerJsDocs = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const errorhandler = require('errorhandler');
 
+const isProduction = process.env.NODE_ENV === 'production';
 
 // ---> Setting
 app.set('port', process.env.PORT || 3000)
@@ -24,11 +26,9 @@ const swaggerOptions = {
     apis: ['src/index.js']
 };
 
-const swaggerDocs = swaggerjsDocs(swaggerOptions);
+const swaggerDocs = swaggerJsDocs(swaggerOptions);
 
-
-
-// ---> Middlewares
+// ---> Middleware
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
@@ -37,29 +37,47 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // ---> Routes
 app.use('/v1/ber', require('./routes/index'));
 
-/**
- * @swagger
- * /documents:
- *  get:
- *      description: Use to request all customers
- *      responses: 
- *          '200':
- *             description: A succeful response
- */
+if (!isProduction) {
+    app.use(errorhandler());
+}
 
-/**
- * @swagger
- * /document:
- *  put:
- *      description: Use to update a customers
- *      responses: 
- *          '201':
- *             description: A succeful response
- */
+// ---> Catch 404 and forward to error handler
+app.use((req, res, next) => {
+    let err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
 
+// ---> Error handlers
+if (!isProduction) {
+    // Development error handler
+    // will print stacktrace
+    app.use((err, req, res, next) => {
+        console.log(err.stack);
 
+        res.status(err.status || 500);
+
+        res.json({
+            errors: {
+                message: err.message,
+                error: err
+            }
+        });
+    });
+}else {
+    // production error handler
+    // no stacktrace leaked to user
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.json({
+            errors: {
+                message: err.message
+            }
+        });
+    });
+}
 
 // ---> Starting the server
 app.listen(app.get('port'), () => {
-    console.log(`Server on port ${app.get('port')}`)
+    console.log(`Server is listening on port ${app.get('port')}`)
 })
