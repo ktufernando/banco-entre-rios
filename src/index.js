@@ -7,7 +7,6 @@ const errorhandler = require('errorhandler');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-
 // ---> Setting
 app.set('port', process.env.PORT || 3000)
 app.set('json spaces', 2);
@@ -29,8 +28,6 @@ const swaggerOptions = {
 
 const swaggerDocs = swaggerJsDocs(swaggerOptions);
 
-
-
 // ---> Middleware
 app.use(morgan('dev'));
 app.use(express.urlencoded({extended: false}));
@@ -39,34 +36,6 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // ---> Routes
 app.use(require('./routes/index'));
-
-/**
- * @swagger
- * /customers:
- *  get:
- *      description: Use to request all customers
- *      responses: 
- *          '200':
- *             description: A successful response
- */
-app.get("/customers", (req, res) => {
-    console.log("request");
-    res.status(200).send("Customer results"); 
-});
-
-/**
- * @swagger
- * /customer:
- *  put:
- *      description: Use to update a customers
- *      responses: 
- *          '201':
- *             description: A successful response
- */
-app.put("/customer", (req, res) => {
-    console.log("request");
-    res.status(201).send("Successfully update customer"); 
-});
 
 if (!isProduction) {
     app.use(errorhandler());
