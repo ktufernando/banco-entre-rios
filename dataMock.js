@@ -127,22 +127,7 @@
     ],
     montoMaximoParaSolicitar: number,
     actividad: [
-        {
-            value: '-1',
-            label: 'Seleccione',
-            destino: [
-                {
-                    value: '-1',
-                    label: 'Seleccione una actividad',
-                    garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        }
-                    ]
-                }
-            ]
-        }, // ---> Agropecuario <---
+         // ---> Agropecuario <---
         {
             value: '2',
             label: 'Agropecuario',
@@ -151,10 +136,6 @@
                     value: '13',
                     label: 'Adquisición de Camiones y Acoplados',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '13',
                             label: 'Prendaria',
@@ -166,10 +147,6 @@
                     label: 'Maquinas Agricolas',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '14',
                             label: 'Prendaria',
                         }
@@ -179,10 +156,6 @@
                     value: '15',
                     label: 'Pick Up y Rodados',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '15',
                             label: 'Prendaria',
@@ -194,10 +167,6 @@
                     label: 'Leasing Rodados',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '16',
                             label: 'Leasing',
                         }
@@ -207,10 +176,6 @@
                     value: '17',
                     label: 'Compra y/o Retención de Hacienda (Hasta $1.500.000)',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '17',
                             label: 'Sola Firma / Fianza',
@@ -222,10 +187,6 @@
                     label: 'Insumos siembra fina y/o gruesa (Hasta $1.500.000)',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '18',
                             label: 'Sola Firma / Fianza',
                         }
@@ -236,10 +197,6 @@
                     label: 'Insumos para Tambo (Hasta $1.500.000)',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '19',
                             label: 'Sola Firma / Fianza',
                         }
@@ -247,44 +204,15 @@
                 },
             ]
         },
-        {  // ---> Comercios <---
-            value: '-1',
-            label: 'Seleccione',
-            destino: [
-                {
-                    value: '-1',
-                    label: 'Seleccione una actividad',
-                    garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        }
-                    ]
-                }
-            ]
-        },
+          // ---> Comercios <---    
         {
             value: '3',
             label: 'Comercio',
             destino: [
                 {
-                    value: '-1',
-                    label: 'Seleccione una actividad',
-                    garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        }
-                    ]
-                },
-                {
                     value: '32',
                     label: 'Adquisición de Camiones y Acoplados',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '32',
                             label: 'Prendaria',
@@ -296,10 +224,6 @@
                     label: 'Utilitarios',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '33',
                             label: 'Prendaria',
                         }
@@ -309,10 +233,6 @@
                     value: '34',
                     label: 'Pick Up y Rodados',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '34',
                             label: 'Prendaria',
@@ -324,10 +244,6 @@
                     label: 'Leasing Rodados',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '35',
                             label: 'Leasing',
                         }
@@ -337,10 +253,6 @@
                     value: '36',
                     label: 'Maquinas y Equipos',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '36',
                             label: 'Hipotecaria',
@@ -352,10 +264,6 @@
                     label: 'Capital de Trabajo (Hasta $1.500.000)',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '37',
                             label: 'Sola Firma / Fianza',
                         }
@@ -366,10 +274,6 @@
                     label: 'ICapital de Trabajo (Mayor $1.500.000)',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '38',
                             label: 'Hipotecaria',
                         }
@@ -377,44 +281,16 @@
                 },
             ]
         },
-        {  // ---> Comercios <---
-            value: '-1',
-            label: 'Seleccione',
-            destino: [
-                {
-                    value: '-1',
-                    label: 'Seleccione una actividad',
-                    garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        }
-                    ]
-                }
-            ]
-        },
+            // ---> Servicios <---
+
         {
             value: '4',
             label: 'Servicios',
             destino: [
                 {
-                    value: '-1',
-                    label: 'Seleccione una actividad',
-                    garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        }
-                    ]
-                },
-                {
                     value: '47',
                     label: 'Adquisición de Camiones y Acoplados',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '47',
                             label: 'Prendaria',
@@ -426,10 +302,6 @@
                     label: 'Utilitarios',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '48',
                             label: 'Prendaria',
                         }
@@ -439,10 +311,6 @@
                     value: '49',
                     label: 'Pick Up y Rodados',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '49',
                             label: 'Prendaria',
@@ -454,10 +322,6 @@
                     label: 'Leasing Rodados',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '50',
                             label: 'Leasing',
                         }
@@ -467,10 +331,6 @@
                     value: '51',
                     label: 'Maquinas y Equipos',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '51',
                             label: 'Hipotecaria',
@@ -482,10 +342,6 @@
                     label: 'Maquinas y Equipos Viales',
                     garantia: [
                         {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
-                        {
                             value: '52',
                             label: 'Hipotecaria',
                         }
@@ -495,10 +351,6 @@
                     value: '53',
                     label: 'Capital de Trabajo (Hasta $1.500.000)',
                     garantia: [
-                        {
-                            value: '-1',
-                            label: 'Seleccione un Destino',
-                        },
                         {
                             value: '53',
                             label: 'Sola Firma / Fianza',
