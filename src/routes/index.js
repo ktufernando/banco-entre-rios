@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const router = Router(); 
+const getData = require('../services/index')
 
 
 
@@ -11,6 +12,8 @@ router.get('/acaparaCreditos', async (req, res) => {
         message: 'Datos obtenidos con exito'
     };
     res.json(response);
+    res.json(getData);
+
 });
 
 // ---> POST ---> Cuit
