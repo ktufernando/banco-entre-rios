@@ -11,7 +11,7 @@ ADD . /app
 RUN npm install
 
 # Puerto
-EXPOSE 5000
+EXPOSE 3000
 
 # Comandos
 CMD ["npm", "run", "start"]

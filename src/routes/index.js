@@ -1,19 +1,24 @@
 const { Router } = require('express');
 const router = Router(); 
-const getData = require('../services/index')
+const getData = require('../services');
+const path = require('path');
 
-
+router.get('/datamock', (req,res) => {
+    res.sendFile(path.resolve(__dirname, '../data/dataMock.js'));
+});
 
 // ---> GET
 router.get('/acaparaCreditos', async (req, res) => {
+    
+    let data = await getData();
+    
     response = {
         error: false,
         status: 200,
-        message: 'Datos obtenidos con exito'
+        message: 'Datos obtenidos con exito',
+        data
     };
     res.json(response);
-    res.json(getData);
-
 });
 
 // ---> POST ---> Cuit
