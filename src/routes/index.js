@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router(); 
-const getData = require('../services');
+const { getData, enrollmentValidation } = require('../services');
 const path = require('path');
 
 router.get('/datamock', (req,res) => {
@@ -15,7 +15,6 @@ router.get('/acaparaCreditos', async (req, res) => {
     response = {
         error: false,
         status: 200,
-        message: 'Datos obtenidos con exito',
         data
     };
     res.json(response);
@@ -47,24 +46,7 @@ router.post("/verificarCuit", async (req, res) => {
 // ---> POST ---> Inscripcion
 router.post("/validarInscripcion", async (req, res) => {
     const formData = req.body;
-    let respuesta = {};
-
-    if (!formData) {
-    response = {
-        error: true,
-        status: 502,
-        message: "Todos los campos son requeridos requeridos"
-    };
-    return res.json(response);
-    }
-    response = {
-    error: false,
-    status: 200,
-    message: "Inscripcion Validada",
-    response: formData 
-    };
-    
-    return res.json(response);
+    return enrollmentValidation(formData)
 }); 
 
 
