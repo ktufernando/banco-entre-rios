@@ -8,17 +8,21 @@ router.get('/datamock', (req,res) => {
 });
 
 // ---> GET
-router.get('/acaparaCreditos', async (req, res) => {
+router.get('/acaparaCreditos', async (req, res, next) => {
+    try {
+        let data = await getData();
+        response = {
+            error: false,
+            status: 200,
+            message: 'Datos obtenidos con exito',
+            data
+        };
+        res.json(response);
+        
+    } catch (error) {
+        next(error);
+    }
     
-    let data = await getData();
-    
-    response = {
-        error: false,
-        status: 200,
-        message: 'Datos obtenidos con exito',
-        data
-    };
-    res.json(response);
 });
 
 // ---> POST ---> Cuit

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const swaggerJsDocs = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const errorhandler = require('errorhandler');
+const routes = require('./routes')
 
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -36,7 +37,7 @@ app.use(express.json());
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // ---> Routes
-app.use('/v1/ber', require('./routes/index'));
+app.use('/v1/ber', routes);
 
 if (!isProduction) {
     app.use(errorhandler());
@@ -53,12 +54,13 @@ app.use((req, res, next) => {
 if (!isProduction) {
     // Development error handler
     // will print stacktrace
-    app.use((err, req, res, next) => {
+    routes.use((err, req, res, next) => {
+
         console.log(err.stack);
 
         res.status(err.status || 500);
 
-        res.json({
+        return res.json({
             errors: {
                 message: err.message,
                 error: err
@@ -68,7 +70,7 @@ if (!isProduction) {
 }else {
     // production error handler
     // no stacktrace leaked to user
-    app.use(function(err, req, res, next) {
+    routes.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.json({
             errors: {
