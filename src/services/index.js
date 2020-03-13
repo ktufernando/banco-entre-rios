@@ -17,31 +17,26 @@ const enrollmentValidation =  async (formData) => {
             "error": false,
             "message": "the Request was Successful" 
         });
-    }else if(data.length != 11){
-        return res.status(400).json({
-            "error": true,
-            "message": "the Request cannot be Executed" 
-        });
+    }else if (data.length != 11){
+
+        throw new Error('the Request cannot be Executed', 400);
+
     }else if (data === '11111111111'){
-        return res.status(404).json({
-            "error": true,
-            "message": "Not Found" 
-        });  
+
+        throw new Error("Not Found", 404);
+
     }else if (data === '222222222222'){
-        return res.status(406).json({
-            "error": true,
-            "message": "Not Acceptable" 
-        });
+
+        throw new Error( 'Not Acceptable', 406)
+
     }else if (data === '33333333333'){
-        return res.status(500).json({
-            "error": true,
-            "message": "Internal Server Error" 
-        });
+
+        throw new Error( 'Internal Server Error', 500)
+
     }else if (data === "44444444444"){
-        return res.status(504).json({
-            "error": true,
-            "message": "the request is not acepted" 
-        });        
+
+        throw new Error( 'the request is not acepted', 504) 
+
     }
 
     return;
