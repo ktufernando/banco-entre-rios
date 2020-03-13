@@ -1,10 +1,37 @@
-const express = require('express')
-const app = express()
+const config = require('./config');
+const express = require('express');
+const logger = require('./loaders/logger');
+
+async function startServer() {
+    const app = express();
+
+    await require('./loaders')(app);
+
+    app.listen(config.port, err => {
+        if (err) {
+          logger.error(err);
+          process.exit(1);
+          return;
+        }
+        logger.info(`
+          ################################################
+          🛡️  Server listening on port: ${config.port} 🛡️ 
+          ################################################
+        `);
+    });
+
+
+}
+
+startServer();
+
+/*const app = express()
 const morgan = require('morgan');
 const swaggerJsDocs = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const errorhandler = require('errorhandler');
-const routes = require('./routes')
+const routes = require('./routes');
+
 
 
 const isProduction = process.env.NODE_ENV === 'production';
@@ -83,4 +110,4 @@ if (!isProduction) {
 // ---> Starting the server
 app.listen(app.get('port'), () => {
     console.log(`Server is listening on port ${app.get('port')}`)
-})
+})*/
