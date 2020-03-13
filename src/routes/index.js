@@ -22,22 +22,23 @@ router.get('/acaparaCreditos', async (req, res) => {
 
 // ---> POST ---> Cuit
 router.post("/verificarCuit", async (req, res) => {
+    console.log(req.body)
     const cuit = req.body;
     let response = {};
 
     if (!cuit) {
-    response = {
-        error: true,
-        status: 502,
-        message: "El campo documento es requeridos"
-    };
-    return res.json(response);
+        response = {
+            error: true,
+            status: 502,
+            message: "El campo documento es requeridos"
+        };
+        return res.json(response);
     }
     response = {
-    error: false,
-    status: 200,
-    message: "Cuit Validado",
-    response: cuit
+        error: false,
+        status: 200,
+        message: "Cuit Validado",
+        response: cuit
     };
     
     return res.json(response);
@@ -45,8 +46,26 @@ router.post("/verificarCuit", async (req, res) => {
 
 // ---> POST ---> Inscripcion
 router.post("/validarInscripcion", async (req, res) => {
-    const formData = req.body;
-    return enrollmentValidation(formData)
+
+    const data = req.body;
+    let response = {};
+
+    if (data) {
+        response = {
+            error: false,
+            status: 200,
+        };
+        return res.json(response);
+    }else{
+        response = {
+            error: true,
+            status: 502,
+            message: "Error the inscription data is not correct",
+            response: data
+        };
+    
+        return res.json(response);
+    }
 }); 
 
 
