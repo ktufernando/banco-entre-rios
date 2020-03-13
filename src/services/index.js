@@ -3,33 +3,39 @@ const fs = require("fs");
 const path = require('path');
 
 const getData =  async () => {
-
-    const data = fs.readFileSync('../data/dataMock.js');
-    console.log(data);
+    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
     return JSON.parse(data);
-
 }
 
 const enrollmentValidation =  async (formData) => {
-    let data = formData;
-    console.log("jejje")
-    let response = {};
-    if (!data) {
-        response = {
-            error: true,
-            status: 502,
-            message: "Todos los campos son requeridos requeridos"
-        };
-        return res.json(response);
-        }
-        response = {
-            error: false,
-            status: 200,
-            message: "Inscripcion Validada",
-            response: formData 
-        };
 
-        return res.json(response); 
+    const data = formData;
+
+    //validar data.cuit
+
+    
+    //TODO: convertir el data en un string
+
+
+    if (data.length != 11){
+
+        throw new Error('El CUIT es invalido', 400);
+
+    }else if (data === '11111111111'){
+
+        throw new Error("CUIT no valido como empresa", 400);
+
+    }else if (data === '222222222222'){
+
+        throw new Error( 'Servicio del grupo no disponible', 504)
+
+    }else {
+
+        //TODO: Responder el mock del ok
+        return;
+    }
+
+    
 
 }
 
