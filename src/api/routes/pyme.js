@@ -1,3 +1,4 @@
+const logger = require('../../loaders/logger');
 const { Router } = require('express');
 const router = Router();
 const { getData, enrollmentValidation } = require('../../services');
@@ -8,7 +9,8 @@ module.exports = (app) => {
 
 
     router.get('/datamock', (req,res) => {
-        res.sendFile(path.resolve(__dirname, '../data/dataMock.js'));
+        logger.silly('Obteniendo el archivo de mocks del filesystem');
+        res.sendFile(path.resolve(__dirname, '../../data/dataMock.js'));
     });
     
     // ---> GET

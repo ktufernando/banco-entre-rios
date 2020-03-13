@@ -4,7 +4,7 @@ const path = require('path');
 
 const getData =  async () => {
 
-    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
+    const data = fs.readFileSync('../data/dataMock.js');
     console.log(data);
     return JSON.parse(data);
 

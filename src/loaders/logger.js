@@ -4,14 +4,15 @@ const config = require('../config');
 const transports = [];
 if (process.env.NODE_ENV !== 'development') {
   transports.push(
-    new winston.transports.Console()
+    new winston.transports.Console(config.logs.console),
+    new winston.transports.File(config.logs.file)
   )
 } else {
   transports.push(
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.cli(),
-        winston.format.splat(),
+        winston.format.splat()
       )
     })
   )

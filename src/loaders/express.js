@@ -1,8 +1,10 @@
 const routes = require('../api');
 const config = require('../config');
 const swaggerDocs = require('./swagger');
+const logger = require('./logger');
 const swaggerUi = require('swagger-ui-express');
 const express = require('express');
+const morgan = require('morgan');
 
 module.exports = (app) => {
     /**
@@ -28,6 +30,7 @@ module.exports = (app) => {
     app.use(require('method-override')());
 
     // ---> Middleware
+    app.use(morgan('dev'));
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
     app.use(config.swagger.path, swaggerUi.serve, swaggerUi.setup(swaggerDocs));
@@ -44,6 +47,8 @@ module.exports = (app) => {
 
     /// error handlers
     app.use((err, req, res, next) => {
+        logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        logger.error('Error %o', err.stack);
         res.status(err.status || 500);
         res.json({
             errors: {
