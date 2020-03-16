@@ -1,7 +1,7 @@
 const logger = require('../../loaders/logger');
 const { Router } = require('express');
 const router = Router();
-const { getData, enrollmentValidation } = require('../../services');
+const { cuitValidator, getData, enrollmentValidation } = require('../../services/pymeServices');
 const path = require('path');
 
 module.exports = (app) => {
@@ -33,30 +33,13 @@ module.exports = (app) => {
     // --> POST ---> Cuit
     router.post("/verificarCuit", async (req, res) => {
         const cuit = req.body;
-        let response = {};
-    
-        if (!cuit) {
-        response = {
-            error: true,
-            status: 502,
-            message: "El campo documento es requeridos"
-        };
-        return res.json(response);
-        }
-        response = {
-        error: false,
-        status: 200,
-        message: "Cuit Validado",
-        response: cuit
-        };
-        
-        return res.json(response);
+        cuitValidator(cuit);
     }); 
     
     // --> POST ---> Inscripcion
     router.post("/validarInscripcion", async (req, res) => {
         const formData = req.body;
-        return enrollmentValidation(formData)
+        return enrollmentValidation(formData);
     }); 
 
 };
