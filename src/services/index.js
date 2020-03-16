@@ -23,7 +23,7 @@ const enrollmentValidation =  async (formData) => {
 
     }else if (data === '11111111111'){
 
-        throw new Error("CUIT no valido como empresa", 400);
+        throw new Error("CUIt no valido como empresa", 400);
 
     }else if (data === '222222222222'){
 
