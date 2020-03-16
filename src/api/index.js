@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const pyme = require('./routes/pyme');
 
-// guaranteed to get dependencies
+// guaranteed to Get dependencies
 module.exports = () => {
 	const app = Router();
 	pyme(app);

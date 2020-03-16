@@ -13,7 +13,7 @@ module.exports = (app) => {
         res.sendFile(path.resolve(__dirname, '../../data/dataMock.js'));
     });
     
-    // ---> GET
+    // --> GET
     router.get('/acaparaCreditos', async (req, res, next) => {
         try {
             let data = await getData();
@@ -30,7 +30,7 @@ module.exports = (app) => {
         }
     });
     
-    // ---> POST ---> Cuit
+    // --> POST ---> Cuit
     router.post("/verificarCuit", async (req, res) => {
         const cuit = req.body;
         let response = {};
@@ -53,7 +53,7 @@ module.exports = (app) => {
         return res.json(response);
     }); 
     
-    // ---> POST ---> Inscripcion
+    // --> POST ---> Inscripcion
     router.post("/validarInscripcion", async (req, res) => {
         const formData = req.body;
         return enrollmentValidation(formData)

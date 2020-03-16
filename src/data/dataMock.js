@@ -126,7 +126,7 @@
                 "label": "NO"
             }
         ],
-        "montoMaximoParaSolicitar": 1000000,
+        "montoMaximoParaSolicitar": 10000000,
         "actividad": [
             {
                 "value": "2",

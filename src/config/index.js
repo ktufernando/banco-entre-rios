@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 const appRoot = require('app-root-path');
 
-// Set the NODE_ENV to 'development' by default
+// Set the NODE_ENV to 'development' By default
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 const envFound = dotenv.config();

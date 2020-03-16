@@ -17,7 +17,7 @@ module.exports = (app) => {
         res.status(200).end();
     });
 
-    // ---> Setting
+    // --> Setting
     app.set('json spaces', 2);
 
     // Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
@@ -29,7 +29,7 @@ module.exports = (app) => {
     // Maybe not needed anymore ?
     app.use(require('method-override')());
 
-    // ---> Middleware
+    // --> Middleware
     app.use(morgan('dev'));
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
