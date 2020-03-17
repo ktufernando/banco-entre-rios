@@ -4,11 +4,10 @@ const logger = require('./logger');
 
 module.exports = async (app) => {
   
-  //TODO: Activar este código cuando tengamos la base de datos
-
   const mongoConnection = await mongooseLoader();
   logger.info('✌️ DB loaded and connected!');
 
+  //TODO: Activar este código cuando tengamos modelo de la base de datos
   /*const userModel = {
     name: 'userModel',
     // Notice the require syntax and the '.default'

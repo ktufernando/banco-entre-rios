@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const config = require('../config');
 
 module.exports = async () => {
-  console.log(config);
   const connection = await mongoose.connect(config.databaseURL, { useNewUrlParser: true, useCreateIndex: true });
   return connection.connection.db;
 };
