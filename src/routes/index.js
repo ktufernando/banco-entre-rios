@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const router = Router(); 
-const { getData, enrollmentValidation } = require('../services');
+const { getData, enrollmentValidation } = require('../services/pymeServices');
 const path = require('path');
 
 router.get('/datamock', (req,res) => {
