@@ -3,8 +3,8 @@ const swaggerJsDocs = require('swagger-jsdoc');
 const swaggerOptions = {
     swaggerDefinition: {
         info: {
-            title: 'GPSA - Api - Banco Santa Fe',
-            description: "Descripcion Endpoints Banco Santa Fe",
+            title: 'GPSA - Api - Banco ENtre Rios',
+            description: "Descripcion Endpoints Entre Rios",
             contact:{
                 name: "Banco Entre Rios"
             },

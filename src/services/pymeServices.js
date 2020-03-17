@@ -14,31 +14,40 @@ const getData =  async () => {
 
 // -----> POST Service  CUIT Validation ####
 
-const cuitValidator = async (cuit) => {
+const cuitValidator = async (res, cuit) => {
 
-    logger.silly('Etrandoa la validacion del Cuit');
-    const data = cuit;
-
-    if(!data){
+    logger.silly('Entrando a la validacion del Cuit');
+    
+    if(!cuit || cuit === ''){
         logger.silly('Primer if validar cuit');
         return res.status(400).json("El Cuit es invalido");
     }
+    else if(cuit.length != 11){
+        console.log(cuit)
+        logger.silly('Entrando a la validacion Error 400');
+        // throw new Error('El CUIT es invalido', 400);
+        return res.status(400).json({ message:'El CUIT es invalido',
+        error: true });
 
-    if (data.cuit.length != 11){
-        logger.silly('Etrandoa la validacion Error 400');
-        throw new Error('El CUIT es invalido', 400);
-
-    }else if (data.cuit === '11111111111'){
+    }else if (cuit === '11111111111'){
         logger.silly('Entrando a la validacion 11111111111 error Cuit no valido');
-        throw new Error("CUIT no valido como empresa", 400);
+        // throw new Error("CUIT no valido como empresa", 400);
+        return res.status(400).json({ message:'CUIT no valido como empresa',
+        error: true });
 
-    }else if (data.cuit === '222222222222'){
+    }else if (cuit === '222222222222'){
         logger.silly('Enrando a la validacion 22222222222 error Cuit no valido');
-        throw new Error( 'Servicio del grupo no disponible', 504)
+        // throw new Error( 'Servicio del grupo no disponible', 504);
+        return res.status(504).json({ message:'Servicio del grupo no disponible',
+        error: true });
 
     }else {
-        logger.silly('ELse respuesta mock OK');
-        return res.status(200).json(data);
+        logger.silly('Else respuesta mock OK');
+        return res.status(200).json({
+            error:false,
+            cuit: cuit,
+            message: "OK"
+        });
 
     }
 
@@ -47,32 +56,41 @@ const cuitValidator = async (cuit) => {
 
 // -----> POST Service  inscription Validation ####
 
-const enrollmentValidation =  async (formData) => {
+const enrollmentValidation =  async (res, formData) => {
 
     logger.silly('Etrandoa la validacion dela inscripcion');
-    const data = formData;
 
-    if(!data){
-        return data = JSON.stringify(data);
+    if(typeof formData === "string"){
+        formData = JSON.parse(formData);
     }
+    const { cuit } = formData;
 
-
-
-    if (data.length != 11){
+    if (cuit.length != 11){
         logger.silly('Etrandoa la validacion Error 400');
-        throw new Error('El CUIT es invalido', 400);
+        // throw new Error('El CUIT es invalido', 400);
+        return res.status(400).json({ message:'El CUIT es invalido',
+        error: true });
+        
 
-    }else if (data === '11111111111'){
+    }else if (cuit === '11111111111'){
         logger.silly('Entrando a la validacion 11111111111 error Cuit no valido');
-        throw new Error("CUIT no valido como empresa", 400);
+        // throw new Error("CUIT no valido como empresa", 400);
+        return res.status(400).json({ message:'Inscripcion no valida para empresa',
+        error: true });
 
-    }else if (data === '222222222222'){
+    }else if (cuit === '222222222222'){
         logger.silly('Enrando a la validacion 22222222222 error Cuit no valido');
-        throw new Error( 'Servicio del grupo no disponible', 504)
+        //throw new Error( 'Servicio del grupo no disponible', 504)
+        return res.status(504).json({ message:'Servicio del grupo no disponible',
+        error: true });
 
     }else {
-        logger.silly('Else respuesta mock OK');
-        return res.status(200).json("OK");
+        logger.silly('La inscripcion a sido validada mock OK');
+        return res.status(200).json({
+            error:false,
+            cuit: cuit,
+            message: "OK"
+        });
     }
 
 }
@@ -82,4 +100,5 @@ module.exports = {
     getData,
     cuitValidator,
     enrollmentValidation
+
 };

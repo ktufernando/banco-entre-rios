@@ -32,14 +32,16 @@ module.exports = (app) => {
     
     // --> POST ---> Cuit
     router.post("/verificarCuit", async (req, res) => {
-        const cuit = req.body;
-        cuitValidator(cuit);
+        const cuit = req.body.cuit;
+        console.log(req.body.cuit)
+        return cuitValidator(res, cuit);
+
     }); 
     
     // --> POST ---> Inscripcion
     router.post("/validarInscripcion", async (req, res) => {
         const formData = req.body;
-        return enrollmentValidation(formData);
+        return enrollmentValidation(res, formData);
     }); 
 
 };
