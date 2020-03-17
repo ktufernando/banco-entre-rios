@@ -15,6 +15,7 @@ async function startServer() {
         }
         logger.info(`
           ################################################
+          🛡️  Environment: ${process.env.NODE_ENV} 🛡️
           🛡️  Server listening on port: ${config.port} 🛡️ 
           ################################################
         `);
