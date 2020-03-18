@@ -1,7 +1,8 @@
 const logger = require('../../loaders/logger');
+const { cuitValidator, getData, enrollmentValidation } = require('../../services/pymeServices');
+const { handleSuccessResponse } = require('../../utils/ResponseHandler');
 const { Router } = require('express');
 const router = Router();
-const { cuitValidator, getData, enrollmentValidation } = require('../../services/pymeServices');
 const path = require('path');
 
 module.exports = (app) => {
@@ -15,31 +16,29 @@ module.exports = (app) => {
     
     // --> GET
     router.get('/acaparaCreditos', async (req, res, next) => {
+        logger.silly('Entrada de endpoint para obtener los datos de los combos del formulario Pyme');
         try {
-            let data = await getData();
-            response = {
-                error: false,
-                status: 200,
-                message: 'Datos obtenidos con exito',
-                data
-            };
-            res.status(200).json(response);
-            
+            res.status(200).json(handleSuccessResponse(await getData()));
         } catch (error) {
             next(error);
         }
     });
     
     // --> POST ---> Cuit
-    router.post("/verificarCuit", async (req, res) => {
+    router.post("/verificarCuit", async (req, res, next) => {
+        logger.silly(`Entrada de endpoint para verificar CUIT pyme con el request body: ${req.body}`);
         const cuit = req.body.cuit;
-        console.log(req.body.cuit)
-        return cuitValidator(res, cuit);
+        try {
+            res.status(200).json(handleSuccessResponse(await cuitValidator(cuit)));
+        } catch (error) {
+            next(error);
+        }
 
     }); 
     
     // --> POST ---> Inscripcion
     router.post("/validarInscripcion", async (req, res) => {
+        logger.silly(`Entrada de endpoint para validar inscripción pyme con el request body: ${req.body}`);
         const formData = req.body;
         return enrollmentValidation(res, formData);
     }); 
