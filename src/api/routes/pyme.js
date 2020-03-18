@@ -37,10 +37,14 @@ module.exports = (app) => {
     }); 
     
     // --> POST ---> Inscripcion
-    router.post("/validarInscripcion", async (req, res) => {
+    router.post("/validarInscripcion", async (req, res, next) => {
         logger.silly(`Entrada de endpoint para validar inscripción pyme con el request body: ${req.body}`);
         const formData = req.body;
-        return enrollmentValidation(res, formData);
+        try {
+            res.status(200).json(handleSuccessResponse(await enrollmentValidation(formData)));
+        } catch (error) {
+            next(error);
+        }
     }); 
 
 };
