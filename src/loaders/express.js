@@ -47,9 +47,9 @@ module.exports = (app) => {
 
     /// error handlers
     app.use((err, req, res, next) => {
-        logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+        logger.error(`${err.code || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
         logger.error('Error %o', err.stack);
-        res.status(err.status || 500);
+        res.status(err.code || 500);
         res.json({
             errors: {
                 message: err.message,

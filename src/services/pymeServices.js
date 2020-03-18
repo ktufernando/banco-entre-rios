@@ -1,5 +1,5 @@
 const logger = require('../loaders/logger');
-const ApplicationError = require('../utils/ApplicationError');
+const {CodeError} = require('../utils/ApplicationError');
 const axios = require('axios');
 const fs = require("fs");
 const path = require('path');
@@ -17,19 +17,20 @@ const getData = async () => {
 // -----> POST Service  CUIT Validation ####
 
 const cuitValidator = async (cuit) => {
+    logger.silly(CodeError);
     logger.silly('Entrando a la validacion del Cuit');
     if (!cuit || cuit === '') {
         logger.silly('Primer if validar cuit');
-        throw new Error('El Cuit es invalido', 400);
+        throw new CodeError('El Cuit es invalido', 400);
     } else if (cuit.length != 11) {
         logger.silly('Entrando a la validacion Error 400');
-        throw new Error('El CUIT es invalido', 400);
+        throw new CodeError('El CUIT es invalido', 400);
     } else if (cuit === '11111111111') {
         logger.silly('Entrando a la validacion 11111111111 error Cuit no valido');
-        throw new Error("CUIT no valido como empresa", 400);
-    } else if (cuit === '222222222222') {
+        throw new CodeError("CUIT no valido como empresa", 400);
+    } else if (cuit === '22222222222') {
         logger.silly('Enrando a la validacion 22222222222 error Cuit no valido');
-        throw new Error('Servicio del grupo no disponible', 504);
+        throw new CodeError('Servicio del grupo no disponible', 504);
     } else {
         logger.silly('Else respuesta mock OK');
         return cuit;

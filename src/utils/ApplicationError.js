@@ -1,16 +1,18 @@
 class ApplicationError extends Error {
-  constructor(name, httpStatusCode = 500, context, ...params) {
-    // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(...params);
-
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, ApplicationError);
-    }
-
-    this.name = 'ApplicationError';
-    this.httpStatusCode = httpStatusCode;
-    this.context = context;
+  constructor(message) {
+    super(message);
+    this.name = this.constructor.name;
+    Error.captureStackTrace(this, this.constructor);
+  }
+}
+class CodeError extends ApplicationError {
+  constructor(message, code = 500) {
+    super(message);
+    this.code = code;
     this.date = new Date();
   }
+}
+
+module.exports = {
+  CodeError
 }
