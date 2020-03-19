@@ -1,7 +1,8 @@
 const routes = require('../api');
 const config = require('../config');
-const swaggerDocs = require('./swagger');
+//const swaggerDocs = require('./swagger');
 const logger = require('./logger');
+const swaggerDocument = require('./swagger/swagger.json');
 const swaggerUi = require('swagger-ui-express');
 const express = require('express');
 const morgan = require('morgan');
@@ -33,7 +34,7 @@ module.exports = (app) => {
     app.use(morgan('dev'));
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
-    app.use(config.swagger.path, swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+    app.use(config.swagger.path, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
     // Load API routes
     app.use(config.api.prefix, routes());
