@@ -24,10 +24,10 @@ const cuitValidator = async (cuit) => {
         throw new CodeError('El Cuit es invalido', 400);
     } else if (cuit.length != 11) {
         logger.silly('Entrando a la validacion Error 400');
-        throw new CodeError('El CUIT es invalido', 400);
+        throw new CodeError('El CUIT no invalido para prestamos', 402);
     } else if (cuit === '11111111111') {
         logger.silly('Entrando a la validacion 11111111111 error Cuit no valido');
-        throw new CodeError("CUIT no valido como empresa", 400);
+        throw new CodeError("CUIT no valido como empresa", 404);
     } else if (cuit === '22222222222') {
         logger.silly('Enrando a la validacion 22222222222 error Cuit no valido');
         throw new CodeError('Servicio del grupo no disponible', 504);
