@@ -1,9 +1,9 @@
-const handleSuccessResponse = (data) => {
+const handleSuccessResponse = (payload) => {
     return {
         error: false,
         message: 'OK',
         status: 200,
-        data
+        payload
     };
 }
 

@@ -6,7 +6,7 @@ const router = Router();
 const path = require('path');
 
 module.exports = (app) => {
-    app.use('/pyme', router);
+    app.use('/pymes', router);
 
 
     router.get('/datamock', (req,res) => {
@@ -15,7 +15,7 @@ module.exports = (app) => {
     });
     
     // --> GET
-    router.get('/acaparaCreditos', async (req, res, next) => {
+    router.get('/credits', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener los datos de los combos del formulario Pyme');
         try {
             res.status(200).json(handleSuccessResponse(await getData()));
