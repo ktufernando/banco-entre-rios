@@ -1,0 +1,535 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Api --> Banco Entre Ríos",
+    "description" : "Esta Api permite obtener la información de los formularios de pyme a través de un método GET. Tambien disponi de dos métodos POST para validar Cuit y para validar Inscripción.  ",
+    "contact" : {
+      "name" : "banco entre rios",
+      "url" : "https://www.bancoentrerios.com.ar/acaparacreditos/#",
+      "email" : "roy.cuenca@naturalth.it"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/semperti1/ApiBancoER/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  }, {
+    "url" : "http://localhost:3000/v1/ber/pymes/credits",
+    "description" : "Datos formulario (GET)"
+  }, {
+    "url" : "http://localhost:3000/v1/ber/pymes/validateCuit/:cuit",
+    "description" : "Validar Cuit (POST)"
+  }, {
+    "url" : "http://localhost:3000/v1/ber/pymes/validateSignUp",
+    "description" : "Validar Inscripcion (POST)"
+  } ],
+  "paths" : {
+    "/v1/ber/pymes/credits" : {
+      "get" : {
+        "tags" : [ "API - Endpoints" ],
+        "description" : "Url - http://localhost:3000/v1/ber/pymes/credits - Permite obtener un objeto json con los datos para los formularios. Solo ejecutar la Request y se obtendra el objeto json.",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Datos",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "data" : [ {
+                      "proveedorTelefonoMovil" : [ {
+                        "value" : "cti",
+                        "label" : "Claro"
+                      }, {
+                        "value" : "movistar",
+                        "label" : "Movistar"
+                      }, {
+                        "value" : "nextel",
+                        "label" : "Nextel"
+                      }, {
+                        "value" : "personal",
+                        "label" : "Personal"
+                      } ],
+                      "provincia" : [ {
+                        "value" : "1",
+                        "label" : "Capital Federal"
+                      }, {
+                        "value" : "2",
+                        "label" : "Buenos Aires"
+                      }, {
+                        "value" : "3",
+                        "label" : "CATAMARCA"
+                      }, {
+                        "value" : "4",
+                        "label" : "CORDOBA"
+                      }, {
+                        "value" : "5",
+                        "label" : "CORRIENTES"
+                      }, {
+                        "value" : "6",
+                        "label" : "CHACO"
+                      }, {
+                        "value" : "7",
+                        "label" : "CHUBUT"
+                      }, {
+                        "value" : "8",
+                        "label" : "ENTRE RIOS"
+                      }, {
+                        "value" : "9",
+                        "label" : "FARMOSA"
+                      }, {
+                        "value" : "10",
+                        "label" : "JUJUY"
+                      }, {
+                        "value" : "11",
+                        "label" : "LA PAMPA"
+                      }, {
+                        "value" : "12",
+                        "label" : "LA RIOJA"
+                      }, {
+                        "value" : "13",
+                        "label" : "MENDOZA"
+                      }, {
+                        "value" : "14",
+                        "label" : "MISIONES"
+                      }, {
+                        "value" : "15",
+                        "label" : "NEUQUEN"
+                      }, {
+                        "value" : "16",
+                        "label" : "RIO NEGRO"
+                      }, {
+                        "value" : "17",
+                        "label" : "SALTA"
+                      }, {
+                        "value" : "18",
+                        "label" : "SAN JUAN"
+                      }, {
+                        "value" : "19",
+                        "label" : "SAN LUIS"
+                      }, {
+                        "value" : "20",
+                        "label" : "SANTA CRUZ"
+                      }, {
+                        "value" : "21",
+                        "label" : "SANTA FE"
+                      }, {
+                        "value" : "22",
+                        "label" : "SANTIAGO DEL ESTERO"
+                      }, {
+                        "value" : "23",
+                        "label" : "TUCUMAN"
+                      }, {
+                        "value" : "24",
+                        "label" : "TIERRA DEL FUEGO, ANTARTUDA E ISLAS"
+                      } ],
+                      "clienteBancario" : [ {
+                        "value" : true,
+                        "label" : "SI"
+                      }, {
+                        "value" : false,
+                        "label" : "NO"
+                      } ],
+                      "montoMaximoParaSolicitar" : 10000000,
+                      "actividad" : [ {
+                        "value" : "2",
+                        "label" : "Agropecuario",
+                        "destino" : [ {
+                          "value" : "13",
+                          "label" : "Adquisición de Camiones y Acoplados",
+                          "garantia" : [ {
+                            "value" : "13",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "14",
+                          "label" : "Maquinas Agricolas",
+                          "garantia" : [ {
+                            "value" : "14",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "15",
+                          "label" : "Pick Up y Rodados",
+                          "garantia" : [ {
+                            "value" : "15",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "16",
+                          "label" : "Leasing Rodados",
+                          "garantia" : [ {
+                            "value" : "16",
+                            "label" : "Leasing"
+                          } ]
+                        }, {
+                          "value" : "17",
+                          "label" : "Compra y/o Retención de Hacienda (Hasta $1.500.000)",
+                          "garantia" : [ {
+                            "value" : "17",
+                            "label" : "Sola Firma / Fianza"
+                          } ]
+                        }, {
+                          "value" : "18",
+                          "label" : "Insumos siembra fina y/o gruesa (Hasta $1.500.000)",
+                          "garantia" : [ {
+                            "value" : "18",
+                            "label" : "Sola Firma / Fianza"
+                          } ]
+                        }, {
+                          "value" : "19",
+                          "label" : "Insumos para Tambo (Hasta $1.500.000)",
+                          "garantia" : [ {
+                            "value" : "19",
+                            "label" : "Sola Firma / Fianza"
+                          } ]
+                        } ]
+                      }, {
+                        "value" : "3",
+                        "label" : "Comercio",
+                        "destino" : [ {
+                          "value" : "32",
+                          "label" : "Adquisición de Camiones y Acoplados",
+                          "garantia" : [ {
+                            "value" : "32",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "33",
+                          "label" : "Utilitarios",
+                          "garantia" : [ {
+                            "value" : "33",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "34",
+                          "label" : "Pick Up y Rodados",
+                          "garantia" : [ {
+                            "value" : "34",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "35",
+                          "label" : "Leasing Rodados",
+                          "garantia" : [ {
+                            "value" : "35",
+                            "label" : "Leasing"
+                          } ]
+                        }, {
+                          "value" : "36",
+                          "label" : "Maquinas y Equipos",
+                          "garantia" : [ {
+                            "value" : "36",
+                            "label" : "Hipotecaria"
+                          } ]
+                        }, {
+                          "value" : "37",
+                          "label" : "Capital de Trabajo (Hasta $1.500.000)",
+                          "garantia" : [ {
+                            "value" : "37",
+                            "label" : "Sola Firma / Fianza"
+                          } ]
+                        }, {
+                          "value" : "38",
+                          "label" : "ICapital de Trabajo (Mayor $1.500.000)",
+                          "garantia" : [ {
+                            "value" : "38",
+                            "label" : "Hipotecaria"
+                          } ]
+                        } ]
+                      }, {
+                        "value" : "4",
+                        "label" : "Servicios",
+                        "destino" : [ {
+                          "value" : "47",
+                          "label" : "Adquisición de Camiones y Acoplados",
+                          "garantia" : [ {
+                            "value" : "47",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "48",
+                          "label" : "Utilitarios",
+                          "garantia" : [ {
+                            "value" : "48",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "49",
+                          "label" : "Pick Up y Rodados",
+                          "garantia" : [ {
+                            "value" : "49",
+                            "label" : "Prendaria"
+                          } ]
+                        }, {
+                          "value" : "50",
+                          "label" : "Leasing Rodados",
+                          "garantia" : [ {
+                            "value" : "50",
+                            "label" : "Leasing"
+                          } ]
+                        }, {
+                          "value" : "51",
+                          "label" : "Maquinas y Equipos",
+                          "garantia" : [ {
+                            "value" : "51",
+                            "label" : "Hipotecaria"
+                          } ]
+                        }, {
+                          "value" : "52",
+                          "label" : "Maquinas y Equipos Viales",
+                          "garantia" : [ {
+                            "value" : "52",
+                            "label" : "Hipotecaria"
+                          } ]
+                        }, {
+                          "value" : "53",
+                          "label" : "Capital de Trabajo (Hasta $1.500.000)",
+                          "garantia" : [ {
+                            "value" : "53",
+                            "label" : "Sola Firma / Fianza"
+                          } ]
+                        } ]
+                      } ]
+                    } ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ber/pymes/validateCuit/:cuit" : {
+      "post" : {
+        "tags" : [ "API - Endpoints" ],
+        "description" : "Url - http://localhost:3000/v1/ber/pymes/validateCuit/:cuit - Endpoint para validar Cuit(pyme) Cuits de prieba - sin cuit - cuit incompleto - \"11111111111\" - \"22222222222\"",
+        "parameters" : [ {
+          "name" : "cuit",
+          "in" : "query",
+          "description" : "validacion de cuit para los prestamos",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "object",
+            "example" : {
+              "cuit" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Cuit comun",
+                  "example" : {
+                    "error" : false,
+                    "message" : "",
+                    "status" : 200
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "El Cuit es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error son cuit",
+                  "example" : {
+                    "error" : true,
+                    "message" : "El Cuit es invalido",
+                    "status" : 400
+                  }
+                }
+              }
+            }
+          },
+          "402" : {
+            "description" : "Cuit no valido para prestamos",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error agregando un cuit incompleto",
+                  "example" : {
+                    "error" : true,
+                    "message" : "Cuit no valido para prestamos",
+                    "status" : 402
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CUIT no valido como empresa",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error agregando un cuit \"11111111111\"",
+                  "example" : {
+                    "error" : true,
+                    "message" : "CUIT no valido como empresa",
+                    "status" : 404
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error agregando un cuit \"22222222222\"",
+                  "example" : {
+                    "error" : true,
+                    "message" : "Servicio del grupo no disponible",
+                    "status" : 404
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/ber/pymes/validateSignUp" : {
+      "post" : {
+        "tags" : [ "API - Endpoints" ],
+        "description" : "Url - http://localhost:3000/v1/ber/pymes/validateSignUp - Endpoint para validar la inscripcion(pyme). Casos prieba de error - sin cuit - cuit incompleto - \"11111111111\" - \"22222222222\"",
+        "parameters" : [ {
+          "name" : "formData",
+          "in" : "query",
+          "description" : "Objeto json con todos los datos del formulario.",
+          "required" : true,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "object",
+            "example" : {
+              "cuit" : "string",
+              "email" : "string",
+              "proveedorTelefonoMovil" : "string",
+              "telefonoMovil" : "string",
+              "razonSocialNombreApellido" : "string",
+              "fechaDDJJ" : "string",
+              "resultadoNeto" : "string",
+              "nombreApellido" : "string",
+              "actividad" : "string",
+              "valorInmueble" : "string",
+              "destino" : "string",
+              "facturacionAnual" : "string",
+              "garantia" : "string",
+              "montoMaximo" : "string",
+              "montoSolicitado" : "number",
+              "recaptcha" : "string",
+              "monotributista" : "string",
+              "fechaNacimiento" : "string",
+              "codigoPostal" : "string"
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Cuit comun",
+                  "example" : {
+                    "error" : false,
+                    "message" : "",
+                    "status" : 200
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrect",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error son cuit",
+                  "example" : {
+                    "error" : true,
+                    "message" : "Dato de entrada incorrect",
+                    "status" : 400
+                  }
+                }
+              }
+            }
+          },
+          "402" : {
+            "description" : "Enrando a la validacion Moni Argento",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error agregando un cuit incompleto",
+                  "example" : {
+                    "error" : true,
+                    "message" : "Entrando a la validacion Moni Argento",
+                    "status" : 402
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "CUIT no valido como empresa",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error agregando un cuit \"11111111111\"",
+                  "example" : {
+                    "error" : true,
+                    "message" : "CUIT no valido como empresa",
+                    "status" : 404
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Error agregando un cuit \"22222222222\"",
+                  "example" : {
+                    "error" : true,
+                    "message" : "Servicio del grupo no disponible",
+                    "status" : 404
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : { }
+}
