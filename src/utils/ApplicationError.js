@@ -6,9 +6,10 @@ class ApplicationError extends Error {
   }
 }
 class CodeError extends ApplicationError {
-  constructor(message, code = 500) {
+  constructor(message, code = 500, payload) {
     super(message);
     this.code = code;
+    this.payload = payload;
     this.date = new Date();
   }
 }

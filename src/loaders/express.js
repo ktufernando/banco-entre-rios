@@ -50,10 +50,14 @@ module.exports = (app) => {
         logger.error(`${err.code || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
         logger.error('Error %o', err.stack);
         res.status(err.code || 500);
-        res.json({
-            errors: {
-                message: err.message,
-            },
-        });
+        let body = {
+            error: {
+                message: err.message
+            }
+        }
+        if(err.payload){
+            body.payload = err.payload
+        }
+        res.json(body);
     });
 };
