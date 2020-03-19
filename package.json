@@ -1,5 +1,5 @@
 {
-  "name": "gpsa-entrerios-bff",
+  "name": "entre-rios-bank-bff",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -7,9 +7,9 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Semperti",
   "license": "ISC",
-  "description": "",
+  "description": "BBF For Entre Rios Bank",
   "dependencies": {
     "app-root-path": "^3.0.0",
     "axios": "^0.19.2",

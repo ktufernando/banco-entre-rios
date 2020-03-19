@@ -4,8 +4,9 @@ const logger = require('./logger');
 
 module.exports = async (app) => {
   
-  const mongoConnection = await mongooseLoader();
-  logger.info('✌️ DB loaded and connected!');
+  //TODO: Activar este código cuando se necesite la conexión a MongoDB
+  /*const mongoConnection = await mongooseLoader();
+  logger.info('✌️ DB loaded and connected!');*/
 
   //TODO: Activar este código cuando tengamos modelo de la base de datos
   /*const userModel = {
