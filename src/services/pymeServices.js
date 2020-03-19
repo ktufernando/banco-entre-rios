@@ -30,7 +30,7 @@ const cuitValidator = async (cuit) => {
         throw new CodeError('El Cuit es invalido', 400, resp);
     } else if (cuit === '11111111111') {
         logger.silly('CUIT no valido como empresa');
-        throw new CodeError("CUIT no valido como empresa", 404, resp);
+        throw new CodeError("CUIT no valido como empresa", 400, resp);
     } else if (cuit === '22222222222') {
         logger.silly('Servicio del grupo no disponible');
         throw new CodeError('Servicio del grupo no disponible', 504, resp);
@@ -55,19 +55,16 @@ const enrollmentValidation = async (formData) => {
         formData = JSON.parse(formData);
     }
 
-    const { cuit } = formData;
+    const { nombreApellido } = formData;
 
-    if (cuit.length != 11) {
-        logger.silly('Etrandoa la validacion Error 400');
-        throw new CodeError('El CUIT es invalido', 400);
-    } else if (cuit === '11111111111') {
-        logger.silly('Entrando a la validacion 11111111111 error Cuit no valido');
-        throw new CodeError("CUIT no valido como empresa", 400);
-    } else if (cuit === '22222222222') {
-        logger.silly('Enrando a la validacion 22222222222 error Cuit no valido');
+    if (nombreApellido === 'Pepe Argento') {
+        logger.silly('Entrando a la validacion Pepe Argento');
+        throw new CodeError("Dato de entrada incorrecto", 400);
+    } else if (nombreApellido === 'Moni Argento') {
+        logger.silly('Enrando a la validacion Moni Argento');
         throw new CodeError('Servicio del grupo no disponible', 504)
     } else {
-        logger.silly('La inscripcion a sido validada mock OK');
+        logger.silly('La inscripcion a sido validada. Mock OK');
         return formData;
     }
 
