@@ -6,6 +6,7 @@ const swaggerDocument = require('./swagger/swagger.json');
 const swaggerUi = require('swagger-ui-express');
 const express = require('express');
 const morgan = require('morgan');
+const path = require('path');
 
 module.exports = (app) => {
     /**
@@ -16,6 +17,10 @@ module.exports = (app) => {
     });
     app.head('/status', (req, res) => {
         res.status(200).end();
+    });
+
+    app.get('/favicon.ico', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '../public/favicon.ico'));
     });
 
     // --> Setting
@@ -56,7 +61,7 @@ module.exports = (app) => {
                 message: err.message
             }
         }
-        if(err.payload){
+        if (err.payload) {
             body.payload = err.payload
         }
         res.json(body);
