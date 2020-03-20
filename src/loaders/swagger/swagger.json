@@ -36,10 +36,10 @@
           "200" : {
             "description" : "OK",
             "content" : {
-              "application/json" : {
+              "Content" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Datos",
+                  "description" : "Datos Formulario",
                   "example" : {
                     "error" : false,
                     "message" : "OK",
@@ -315,93 +315,94 @@
         "parameters" : [ {
           "name" : "cuit",
           "in" : "query",
-          "description" : "validacion de cuit para los prestamos",
+          "description" : "Content-Type:JSON",
           "required" : true,
           "style" : "form",
           "explode" : true,
           "schema" : {
             "type" : "object",
             "example" : {
-              "cuit" : "string"
+              "cuit" : "20734322237"
             }
-          }
+          },
+          "example" : "44444444444"
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Cuit igual a \"33333333333\"",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Cuit comun",
+                  "description" : "Http status code response 200 mensaje OK",
                   "example" : {
                     "error" : false,
-                    "message" : "",
-                    "status" : 200
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "isValid" : true,
+                      "isMonotributista" : false
+                    }
                   }
                 }
               }
             }
           },
           "400" : {
-            "description" : "El Cuit es invalido",
+            "description" : "Cuit menor o mayor a 11 caracteres",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Error son cuit",
+                  "description" : "Mensaje \"El CUIT es invalido\"",
                   "example" : {
-                    "error" : true,
-                    "message" : "El Cuit es invalido",
-                    "status" : 400
+                    "error" : {
+                      "message" : "El Cuit es invalido"
+                    },
+                    "payload" : {
+                      "isValid" : false,
+                      "isMonotributista" : false
+                    }
                   }
                 }
               }
             }
           },
           "402" : {
-            "description" : "Cuit no valido para prestamos",
+            "description" : "Cuit igual a \"11111111111\"",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Error agregando un cuit incompleto",
+                  "description" : "Mensaje \"CUIT no valido como empresa\"",
                   "example" : {
-                    "error" : true,
-                    "message" : "Cuit no valido para prestamos",
-                    "status" : 402
-                  }
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "CUIT no valido como empresa",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "object",
-                  "description" : "Error agregando un cuit \"11111111111\"",
-                  "example" : {
-                    "error" : true,
-                    "message" : "CUIT no valido como empresa",
-                    "status" : 404
+                    "error" : {
+                      "message" : "CUIT no valido como empresa"
+                    },
+                    "payload" : {
+                      "isValid" : false,
+                      "isMonotributista" : false
+                    }
                   }
                 }
               }
             }
           },
           "504" : {
-            "description" : "Servicio del grupo no disponible",
+            "description" : "Cuit igual a \"22222222222\"",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Error agregando un cuit \"22222222222\"",
+                  "description" : "Mensaje \"Servicio del grupo no disponible\"",
                   "example" : {
-                    "error" : true,
-                    "message" : "Servicio del grupo no disponible",
-                    "status" : 404
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    },
+                    "payload" : {
+                      "isValid" : false,
+                      "isMonotributista" : false
+                    }
                   }
                 }
               }
@@ -413,9 +414,9 @@
     "/v1/ber/pymes/validateSignUp" : {
       "post" : {
         "tags" : [ "API - Endpoints" ],
-        "description" : "Url - http://localhost:3000/v1/ber/pymes/validateSignUp - Endpoint para validar la inscripcion(pyme). Casos prieba de error - sin cuit - cuit incompleto - \"11111111111\" - \"22222222222\"",
+        "description" : "Url - http://localhost:3000/v1/ber/pymes/validateSignUp - Endpoint para validar la inscripcion(pyme).",
         "parameters" : [ {
-          "name" : "formData",
+          "name" : "BODY row",
           "in" : "query",
           "description" : "Objeto json con todos los datos del formulario.",
           "required" : true,
@@ -448,64 +449,53 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "OK",
+            "description" : "Cualquier otro caso",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Cuit comun",
+                  "description" : "Http status code response 200",
                   "example" : {
                     "error" : false,
-                    "message" : "",
-                    "status" : 200
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "cuit" : "string",
+                      "email" : "string",
+                      "proveedorTelefonoMovil" : "string",
+                      "telefonoMovil" : "string",
+                      "razonSocialNombreApellido" : "string",
+                      "fechaDDJJ" : "string",
+                      "resultadoNeto" : "string",
+                      "nombreApellido" : "string",
+                      "actividad" : "string",
+                      "valorInmueble" : "string",
+                      "destino" : "string",
+                      "facturacionAnual" : "string",
+                      "garantia" : "string",
+                      "montoMaximo" : "string",
+                      "montoSolicitado" : 100,
+                      "recaptcha" : "string",
+                      "monotributista" : "string",
+                      "fechaNacimiento" : "string",
+                      "codigoPostal" : "string"
+                    }
                   }
                 }
               }
             }
           },
           "400" : {
-            "description" : "Dato de entrada incorrect",
+            "description" : "Dato de entrada incorrecto",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Error son cuit",
+                  "description" : "nombreApellido = \"Pepe Argento\"",
                   "example" : {
-                    "error" : true,
-                    "message" : "Dato de entrada incorrect",
-                    "status" : 400
-                  }
-                }
-              }
-            }
-          },
-          "402" : {
-            "description" : "Enrando a la validacion Moni Argento",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "object",
-                  "description" : "Error agregando un cuit incompleto",
-                  "example" : {
-                    "error" : true,
-                    "message" : "Entrando a la validacion Moni Argento",
-                    "status" : 402
-                  }
-                }
-              }
-            }
-          },
-          "404" : {
-            "description" : "CUIT no valido como empresa",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "type" : "object",
-                  "description" : "Error agregando un cuit \"11111111111\"",
-                  "example" : {
-                    "error" : true,
-                    "message" : "CUIT no valido como empresa",
-                    "status" : 404
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    }
                   }
                 }
               }
@@ -517,11 +507,11 @@
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Error agregando un cuit \"22222222222\"",
+                  "description" : "nombreApellido = \"Moni Argento\"",
                   "example" : {
-                    "error" : true,
-                    "message" : "Servicio del grupo no disponible",
-                    "status" : 404
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
                   }
                 }
               }
