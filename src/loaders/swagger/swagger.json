@@ -2,7 +2,7 @@
   "openapi" : "3.0.0",
   "info" : {
     "title" : "Api --> Banco Entre Ríos",
-    "description" : "Esta Api permite obtener la información de los formularios de pyme a través de un método GET. Tambien disponi de dos métodos POST para validar Cuit y para validar Inscripción.  ",
+    "description" : "BFF para la web del Banco Entre Rios.  ",
     "contact" : {
       "name" : "banco entre rios",
       "url" : "https://www.bancoentrerios.com.ar/acaparacreditos/#",
@@ -12,26 +12,17 @@
       "name" : "Apache 2.0",
       "url" : "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version" : "1.0.0"
+    "version" : "0.0.1"
   },
   "servers" : [ {
-    "url" : "https://virtserver.swaggerhub.com/semperti1/ApiBancoER/1.0.0",
-    "description" : "SwaggerHub API Auto Mocking"
-  }, {
-    "url" : "http://localhost:3000/v1/ber/pymes/credits",
+    "url" : "http://localhost:3000/v1/ber",
     "description" : "Datos formulario (GET)"
-  }, {
-    "url" : "http://localhost:3000/v1/ber/pymes/validateCuit/:cuit",
-    "description" : "Validar Cuit (POST)"
-  }, {
-    "url" : "http://localhost:3000/v1/ber/pymes/validateSignUp",
-    "description" : "Validar Inscripcion (POST)"
   } ],
   "paths" : {
-    "/v1/ber/pymes/credits" : {
+    "/pymes/credits" : {
       "get" : {
         "tags" : [ "API - Endpoints" ],
-        "description" : "Url - http://localhost:3000/v1/ber/pymes/credits - Permite obtener un objeto json con los datos para los formularios. Solo ejecutar la Request y se obtendra el objeto json.",
+        "description" : "Endpoint Permite obtener un objeto json con los datos para los formularios. Solo ejecutar la Request y se obtendra el objeto json.",
         "responses" : {
           "200" : {
             "description" : "OK",
@@ -308,23 +299,16 @@
         }
       }
     },
-    "/v1/ber/pymes/validateCuit/:cuit" : {
+    "/pymes/validateCuit/{cuit}" : {
       "post" : {
         "tags" : [ "API - Endpoints" ],
-        "description" : "Url - http://localhost:3000/v1/ber/pymes/validateCuit/:cuit - Endpoint para validar Cuit(pyme) Cuits de prieba - sin cuit - cuit incompleto - \"11111111111\" - \"22222222222\"",
+        "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isMonotributista: false",
         "parameters" : [ {
           "name" : "cuit",
-          "in" : "query",
-          "description" : "Content-Type:JSON",
+          "in" : "path",
+          "type":"string",
+          "description" : "Cuit del cliente",
           "required" : true,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "object",
-            "example" : {
-              "cuit" : "20734322237"
-            }
-          },
           "example" : "44444444444"
         } ],
         "responses" : {
@@ -411,42 +395,20 @@
         }
       }
     },
-    "/v1/ber/pymes/validateSignUp" : {
+    "/pymes/validateSignUp" : {
       "post" : {
         "tags" : [ "API - Endpoints" ],
-        "description" : "Url - http://localhost:3000/v1/ber/pymes/validateSignUp - Endpoint para validar la inscripcion(pyme).",
-        "parameters" : [ {
-          "name" : "BODY row",
-          "in" : "query",
-          "description" : "Objeto json con todos los datos del formulario.",
-          "required" : true,
-          "style" : "form",
-          "explode" : true,
-          "schema" : {
-            "type" : "object",
-            "example" : {
-              "cuit" : "string",
-              "email" : "string",
-              "proveedorTelefonoMovil" : "string",
-              "telefonoMovil" : "string",
-              "razonSocialNombreApellido" : "string",
-              "fechaDDJJ" : "string",
-              "resultadoNeto" : "string",
-              "nombreApellido" : "string",
-              "actividad" : "string",
-              "valorInmueble" : "string",
-              "destino" : "string",
-              "facturacionAnual" : "string",
-              "garantia" : "string",
-              "montoMaximo" : "string",
-              "montoSolicitado" : "number",
-              "recaptcha" : "string",
-              "monotributista" : "string",
-              "fechaNacimiento" : "string",
-              "codigoPostal" : "string"
+        "description" : "Endpoint para validar la inscripcion(pyme). Casos de prueba: nombreApellido = Pepe Argento > Http status code response: 400, nombreApellido = Moni Argento > Http status code response: 504, Cualquier otro caso > Http status code response: 200",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/validateSignUpRequest"
+              }
             }
           }
-        } ],
+        },
         "responses" : {
           "200" : {
             "description" : "Cualquier otro caso",
@@ -521,5 +483,85 @@
       }
     }
   },
-  "components" : { }
+  "components" : {
+    "schemas" : {
+      "validateSignUpRequest" : {
+        "type" : "object",
+        "properties" : {
+          "cuit" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "proveedorTelefonoMovil" : {
+            "type" : "string"
+          },
+          "telefonoMovil" : {
+            "type" : "string"
+          },
+          "razonSocialNombreApellido" : {
+            "type" : "string"
+          },
+          "fechaDDJJ" : {
+            "type" : "string"
+          },
+          "resultadoNeto" : {
+            "type" : "string"
+          },
+          "nombreApellido" : {
+            "type" : "string"
+          },
+          "actividad" : {
+            "type" : "string"
+          },
+          "valorInmueble" : {
+            "type" : "string"
+          },
+          "destino" : {
+            "type" : "string"
+          },
+          "montoMaximo" : {
+            "type" : "string"
+          },
+          "montoSolicitado" : {
+            "type" : "number"
+          },
+          "recaptcha" : {
+            "type" : "string"
+          },
+          "monotributista" : {
+            "type" : "string"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "codigoPostal" : {
+            "type" : "string"
+          }
+        },
+        "example" : {
+          "cuit" : "20957655547",
+          "email" : "rodolfo@gmail.com",
+          "proveedorTelefonoMovil" : "movistar",
+          "telefonoMovil" : "1153746354",
+          "razonSocialNombreApellido" : "238273",
+          "fechaDDJJ" : "27/05/1989",
+          "resultadoNeto" : "8738478",
+          "nombreApellido" : "rafael aguirre",
+          "actividad" : "actividad",
+          "valorInmueble" : "7382783",
+          "destino" : "destino",
+          "facturacionAnual" : "273837823",
+          "garantia" : "28372837",
+          "montoMaximo" : "8237837763",
+          "montoSolicitado" : 15000000,
+          "recaptcha" : "string",
+          "monotributista" : "string",
+          "fechaNacimiento" : "03/03/1987",
+          "codigoPostal" : "1426"
+        }
+      }
+    }
+  }
 }
