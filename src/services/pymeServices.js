@@ -50,12 +50,13 @@ const cuitValidator = async (cuit) => {
 // -----> POST Service  inscription Validation ####
 
 const enrollmentValidation = async (formData) => {
-    logger.silly('Etrandoa la validacion dela inscripcion');
+    logger.silly('Entrando a la validacion de la inscripcion');
     if (typeof formData === "string") {
         formData = JSON.parse(formData);
     }
 
     const { nombreApellido } = formData;
+    logger.silly(`Nombre ${nombreApellido}`);
 
     if (nombreApellido === 'Pepe Argento') {
         logger.silly('Entrando a la validacion Pepe Argento');

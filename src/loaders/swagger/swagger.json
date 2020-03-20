@@ -302,7 +302,7 @@
     "/pymes/validateCuit/{cuit}" : {
       "post" : {
         "tags" : [ "API - Endpoints" ],
-        "description" : "Endpoint para validar Cuit(pyme) Cuits de prueba - sin cuit - cuit incompleto - \"11111111111\" - \"22222222222\"",
+        "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isMonotributista: false",
         "parameters" : [ {
           "name" : "cuit",
           "in" : "path",
@@ -398,16 +398,17 @@
     "/pymes/validateSignUp" : {
       "post" : {
         "tags" : [ "API - Endpoints" ],
-        "description" : "Endpoint para validar la inscripcion(pyme).",
-        "parameters" : [ {
-          "name" : "Validate sign up request",
-          "in" : "body",
-          "description" : "Objeto json con todos los datos del formulario.",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/components/schemas/Validate sign up request"
+        "description" : "Endpoint para validar la inscripcion(pyme). Casos de prueba: nombreApellido = Pepe Argento > Http status code response: 400, nombreApellido = Moni Argento > Http status code response: 504, Cualquier otro caso > Http status code response: 200",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/validateSignUpRequest"
+              }
+            }
           }
-        } ],
+        },
         "responses" : {
           "200" : {
             "description" : "Cualquier otro caso",
@@ -484,7 +485,7 @@
   },
   "components" : {
     "schemas" : {
-      "Validate sign up request" : {
+      "validateSignUpRequest" : {
         "type" : "object",
         "properties" : {
           "cuit" : {
