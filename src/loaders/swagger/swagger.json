@@ -15,9 +15,14 @@
     "version" : "0.0.1"
   },
   "servers" : [ {
-    "url" : "http://localhost:3000/v1/ber",
-    "description" : "Datos formulario (GET)"
-  } ],
+      "url" : "http://localhost:3000/v1/ber",
+      "description" : "Local"
+    },
+    {
+      "url" : "https://bancoentrerios.herokuapp.com/v1/ber",
+      "description" : "Heroku"
+    } 
+  ],
   "paths" : {
     "/pymes/credits" : {
       "get" : {
