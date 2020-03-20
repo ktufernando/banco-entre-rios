@@ -7,8 +7,12 @@ const swaggerUi = require('swagger-ui-express');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors')
 
 module.exports = (app) => {
+
+    app.use(cors());
+
     /**
      * Health Check endpoints
      */
