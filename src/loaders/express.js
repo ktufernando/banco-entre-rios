@@ -1,13 +1,12 @@
 const routes = require('../api');
 const config = require('../config');
-//const swaggerDocs = require('./swagger');
 const logger = require('./logger');
 const swaggerDocument = require('./swagger/swagger.json');
 const swaggerUi = require('swagger-ui-express');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
 
 module.exports = (app) => {
 
