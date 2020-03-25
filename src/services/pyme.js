@@ -9,7 +9,7 @@ const path = require('path');
 
 const getData = async () => {
     logger.silly('Obteniendo los datos del archivo mock');
-    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
+    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.json'));
     return JSON.parse(data);
 }
 
