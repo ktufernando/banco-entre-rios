@@ -1,6 +1,5 @@
 const routes = require('../api');
 const config = require('../config');
-//const swaggerDocs = require('./swagger');
 const logger = require('./logger');
 const swaggerDocument = require('./swagger/swagger.json');
 const swaggerUi = require('swagger-ui-express');
