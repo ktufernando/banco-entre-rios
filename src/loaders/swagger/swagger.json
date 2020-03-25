@@ -40,7 +40,7 @@
                     "error" : false,
                     "message" : "OK",
                     "status" : 200,
-                    "data" : [ {
+                    "payload" : {
                       "proveedorTelefonoMovil" : [ {
                         "value" : "cti",
                         "label" : "Claro"
@@ -295,7 +295,7 @@
                           } ]
                         } ]
                       } ]
-                    } ]
+                    }
                   }
                 }
               }
