@@ -4,10 +4,10 @@ const { Router } = require('express');
 const router = Router();
 const path = require('path');
 const { getCuil,
-        getMaritalState,
         getCountries,
-        getValidateBirdtDay,
-        getLocalities
+        getLocalities,
+        getMaritalState,
+        getValidateBirdtDay
     } = require('../../services/qrServices');
 
 module.exports = (app) => {
