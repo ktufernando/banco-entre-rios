@@ -8,8 +8,8 @@ const path = require('path');
 // -----> GET Services Cuil data  ####
 const getCuil = async () => {
     logger.silly('Obteniendo Cuil');
-    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
-    return JSON.parse(data);
+    const { respuestaCuil } = fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'));
+    return JSON.parse(respuestaCuil);
 }
 
 // -----> GET Service Maritral State  ####
