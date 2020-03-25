@@ -11,7 +11,7 @@ module.exports = (app) => {
 
     router.get('/datamock', (req,res) => {
         logger.silly('Obteniendo el archivo de mocks del filesystem');
-        res.sendFile(path.resolve(__dirname, '../../data/dataMock.js'));
+        res.sendFile(path.resolve(__dirname, '../../data/dataMock.json'));
     });
     
     // --> GET

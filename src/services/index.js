@@ -1,3 +1,4 @@
 module.exports = {
-    pymeService: require('./pyme')
+    pymeService: require('./pyme'),
+    qrService: require('./qr')
 }
