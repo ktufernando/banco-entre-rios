@@ -60,10 +60,10 @@ const enrollmentValidation = async (formData) => {
 
     if (nombreApellido === 'Pepe Argento') {
         logger.silly('Entrando a la validacion Pepe Argento');
-        throw new CodeError("Dato de entrada incorrecto", 400);
+        throw new CodeError("Dato de entrada incorrecto", 400, formData);
     } else if (nombreApellido === 'Moni Argento') {
         logger.silly('Enrando a la validacion Moni Argento');
-        throw new CodeError('Servicio del grupo no disponible', 504)
+        throw new CodeError('Servicio del grupo no disponible', 504, formData)
     } else {
         logger.silly('La inscripcion a sido validada. Mock OK');
         return formData;

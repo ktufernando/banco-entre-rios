@@ -462,6 +462,27 @@
                   "example" : {
                     "error" : {
                       "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "cuit" : "string",
+                      "email" : "string",
+                      "proveedorTelefonoMovil" : "string",
+                      "telefonoMovil" : "string",
+                      "razonSocialNombreApellido" : "string",
+                      "fechaDDJJ" : "string",
+                      "resultadoNeto" : "string",
+                      "nombreApellido" : "string",
+                      "actividad" : "string",
+                      "valorInmueble" : "string",
+                      "destino" : "string",
+                      "facturacionAnual" : "string",
+                      "garantia" : "string",
+                      "montoMaximo" : "string",
+                      "montoSolicitado" : 100,
+                      "recaptcha" : "string",
+                      "monotributista" : "string",
+                      "fechaNacimiento" : "string",
+                      "codigoPostal" : "string"
                     }
                   }
                 }
@@ -478,6 +499,27 @@
                   "example" : {
                     "error" : {
                       "message" : "Servicio del grupo no disponible"
+                    },
+                    "payload" : {
+                      "cuit" : "string",
+                      "email" : "string",
+                      "proveedorTelefonoMovil" : "string",
+                      "telefonoMovil" : "string",
+                      "razonSocialNombreApellido" : "string",
+                      "fechaDDJJ" : "string",
+                      "resultadoNeto" : "string",
+                      "nombreApellido" : "string",
+                      "actividad" : "string",
+                      "valorInmueble" : "string",
+                      "destino" : "string",
+                      "facturacionAnual" : "string",
+                      "garantia" : "string",
+                      "montoMaximo" : "string",
+                      "montoSolicitado" : 100,
+                      "recaptcha" : "string",
+                      "monotributista" : "string",
+                      "fechaNacimiento" : "string",
+                      "codigoPostal" : "string"
                     }
                   }
                 }
