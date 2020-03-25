@@ -45,7 +45,10 @@ const getLocalities = async () => {
 
 
 module.exports = {
-    getData,
-    cuitValidator,
-    enrollmentValidation
+    getCuil,
+    getMaritalState,
+    getCountries,
+    getValidateBirdtDay,
+    getLocalities
+
 };

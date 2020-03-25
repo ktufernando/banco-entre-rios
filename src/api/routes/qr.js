@@ -1,14 +1,9 @@
 const logger = require('../../loaders/logger');
+const { qrService } = require('../../services');
 const { handleSuccessResponse } = require('../../utils/ResponseHandler');
 const { Router } = require('express');
 const router = Router();
 const path = require('path');
-const { getCuil,
-        getCountries,
-        getLocalities,
-        getMaritalState,
-        getValidateBirdtDay
-    } = require('../../services/qrServices');
 
 module.exports = (app) => {
     app.use('/qr', router);
@@ -18,7 +13,7 @@ module.exports = (app) => {
     router.get('/chargeWithQR/getCUIL/:dni', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener codigo qr');
         try {
-            res.status(200).json(handleSuccessResponse(await getCuil()));
+            res.status(200).json(handleSuccessResponse(await qrService.getCuil()));
         } catch (error) {
             next(error);
         }
@@ -28,7 +23,7 @@ module.exports = (app) => {
     router.get('/chargeWithQR/getEstadoCivil', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener estado civil');
         try {
-            res.status(200).json(handleSuccessResponse(await getMaritalState()));
+            res.status(200).json(handleSuccessResponse(await qrService.getMaritalState()));
         } catch (error) {
             next(error);
         }
@@ -38,7 +33,7 @@ module.exports = (app) => {
     router.get('/chargeWithQR/getCountries', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener paises');
         try {
-            res.status(200).json(handleSuccessResponse(await getCountries()));
+            res.status(200).json(handleSuccessResponse(await qrService.getCountries()));
         } catch (error) {
             next(error);
         }
@@ -48,7 +43,7 @@ module.exports = (app) => {
     router.get('/chargeWithQR/validateApplicantAge/:applicantDayOfBirth', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener paises');
         try {
-            res.status(200).json(handleSuccessResponse(await getValidateBirdtDay()));
+            res.status(200).json(handleSuccessResponse(await qrService.getValidateBirdtDay()));
         } catch (error) {
             next(error);
         }
@@ -58,7 +53,7 @@ module.exports = (app) => {
     router.get('/chargeWithQR/getLocalities/:postalCode', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener paises');
         try {
-            res.status(200).json(handleSuccessResponse(await getLocalities()));
+            res.status(200).json(handleSuccessResponse(await qrService.getLocalities()));
         } catch (error) {
             next(error);
         }
