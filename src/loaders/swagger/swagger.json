@@ -529,6 +529,79 @@
         }
       }
     },
+    "/qr/chargeWithQR/getCUIL/{dni}" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para Obtener Cuil. Casos de prueba: DNI  = \"11111\" -> El Dni es invalido. DNI = \"11111111\" -> OK. DNI = \"222222220\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "dni",
+          "in" : "path",
+          "type":"string",
+          "description" : "dni",
+          "required" : true,
+          "example" : "11111111"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El DNI es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El DNI es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El DNI es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/qr/chargeWithQR/getEstadoCivil" : {
       "get" : {
         "tags" : [ "QR" ],
@@ -660,7 +733,7 @@
       }
     },
     "/qr/chargeWithQR/validateApplicantAge/{applicantDayOfBirth}" : {
-      "post" : {
+      "get" : {
         "tags" : [ "QR" ],
         "description" : "Servicio para validar una fecha de nacimiento. Casos de prueba: Fecha de nacimiento = \"10%2F13%2F1980\" -> La fecha de nacimiento es invalida. Fecha de nacimiento = \"10%2F01%2F3000\" -> La fecha de nacimiento es mayor a la fecha actual. Fecha de nacimiento = \"10%2F01%2F1980\" -> OK",
         "parameters" : [ {
@@ -733,6 +806,7 @@
       }
     }
   },
+  
   "components" : {
     "schemas" : {
       "validateSignUpRequest" : {
