@@ -3,6 +3,7 @@ const { CodeError } = require('../utils/ApplicationError');
 const axios = require('axios');
 const fs = require("fs");
 const path = require('path');
+const moment = require('moment');
 
 
 // -----> GET Services Cuil data  ####
@@ -12,7 +13,7 @@ const getCuil = async () => {
     return JSON.parse(respuestaCuil);
 }
 
-// -----> GET Service Maritral State  ####
+// -----> GET Service Marital State  ####
 const getMaritalState = async () => {
     logger.silly('Obteniendo los datos de estados civiles');
     const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaEstadoCivil;
@@ -20,7 +21,7 @@ const getMaritalState = async () => {
 }
 
 
-// -----> GET Service Countires ####
+// -----> GET Service Countries ####
 const getCountries = async () => {
     logger.silly('Obteniendo los datos de paises');
     return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaPaises;
@@ -28,10 +29,25 @@ const getCountries = async () => {
 
 
 // -----> GET Service Validation Birth Day  ####
-const getValidateBirdtDay = async () => {
-    logger.silly('Obteniendo los datos de fecha de nacimiento');
-    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
-    return JSON.parse(data);
+const getValidateBirthDay = async (applicantDayOfBirth) => {
+    logger.silly('Validando la fecha de nacimiento: ', applicantDayOfBirth);
+
+    const date = moment(applicantDayOfBirth, "DD%2FMM%2FYYYY");
+
+    let resp = {
+        isValid: date.isValid()
+    }
+
+    if (resp.isValid) {
+        if(date.isAfter(moment())){
+            logger.silly('Fecha de nacimiento es mayor a la fecha actual');
+            throw new CodeError('Fecha de nacimiento es mayor a la fecha actual', 400, resp);
+        }
+        return resp;
+    } else {
+        logger.silly('Fecha de nacimiento invalida');
+        throw new CodeError('La fecha de nacimiento en invalida', 400, resp);
+    }
 }
 
 
@@ -47,7 +63,7 @@ module.exports = {
     getCuil,
     getMaritalState,
     getCountries,
-    getValidateBirdtDay,
+    getValidateBirthDay,
     getLocalities
 
 };

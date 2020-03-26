@@ -41,9 +41,10 @@ module.exports = (app) => {
 
     // --> GET date of birth
     router.get('/chargeWithQR/validateApplicantAge/:applicantDayOfBirth', async (req, res, next) => {
-        logger.silly('Entrada de endpoint para obtener paises');
+        logger.silly('Entrada de endpoint para verificar la fecha de nacimiento');
         try {
-            res.status(200).json(handleSuccessResponse(await qrService.getValidateBirdtDay()));
+            const applicantDayOfBirth = req.params.applicantDayOfBirth;
+            res.status(200).json(handleSuccessResponse(await qrService.getValidateBirthDay(applicantDayOfBirth)));
         } catch (error) {
             next(error);
         }
