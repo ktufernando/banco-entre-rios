@@ -15,8 +15,8 @@ const getdni = async (dni) => {
     }
     
     if (!dni || dni === '' || dni.length != 8){
-        logger.silly('Error de dni');
-        throw new CodeError('El Cuit  es invalido', 400, resp);
+        logger.silly('Error de invalido');
+        throw new CodeError('El Cuil es invalido', 400, resp);
     } else if (dni === '11111111') {
         logger.silly('Cuit valido');
         return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestadni;
