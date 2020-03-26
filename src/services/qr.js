@@ -7,7 +7,7 @@ const moment = require('moment');
 
 
 // -----> GET Services Cuil data  ####
-const getdni = async (dni) => {
+const getCuil = async (dni) => {
     logger.silly('Obteniendo dni');
     
     let resp = {
@@ -19,7 +19,7 @@ const getdni = async (dni) => {
         throw new CodeError('El dni es invalido', 400, resp);
     } else if (dni === '11111111') {
         logger.silly('dni valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestadni;
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaCuil;
     } else if (dni === '22222222') {
         logger.silly('Servicio no disponible');
         throw new CodeError('Servicio no disponible', 504, resp);
@@ -74,7 +74,7 @@ const getLocalities = async () => {
 
 
 module.exports = {
-    getdni,
+    getCuil,
     getMaritalState,
     getCountries,
     getValidateBirthDay,

@@ -14,7 +14,7 @@ module.exports = (app) => {
         logger.silly('Entrada de endpoint para obtener codigo qr');
     
         try {
-            const dni = req.body.dni;
+            const dni = req.params.dni;
             res.status(200).json(handleSuccessResponse(await qrService.getCuil(dni)));
         } catch (error) {
             next(error);
