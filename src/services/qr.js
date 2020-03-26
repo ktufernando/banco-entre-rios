@@ -16,9 +16,9 @@ const getdni = async (dni) => {
     
     if (!dni || dni === '' || dni.length != 8){
         logger.silly('Error de invalido');
-        throw new CodeError('El Cuil es invalido', 400, resp);
+        throw new CodeError('El dni es invalido', 400, resp);
     } else if (dni === '11111111') {
-        logger.silly('Cuit valido');
+        logger.silly('dni valido');
         return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestadni;
     } else if (dni === '22222222') {
         logger.silly('Servicio no disponible');
