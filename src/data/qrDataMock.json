@@ -88,54 +88,14 @@
   "respuestaFechaNacimiento": {
     "isValid": true
   },
-  "respuestaLocalidades": [
+  "respuestaLocalidades": 
     {
-      "localityModel": [
-        {
-          "id": 336,
-          "descripcion": "CAPITAL FEDERAL",
-          "codigo": "1426",
-          "cp": "1426",
-          "idProvincia": 1
-        }
-      ],
-      "sucursalModel": []
-    },
-    {
-      "localityModel": [
-        {
-          "id": 597,
-          "descripcion": "DIAZ",
-          "codigo": "2222",
-          "cp": "2222",
-          "idProvincia": 21
-        }
-      ],
-      "sucursalModel": []
-    },
-    {
-      "localityModel": [
-        {
-          "id": 1225,
-          "descripcion": "ANCA",
-          "codigo": "4321",
-          "cp": "4321",
-          "idProvincia": 22
-        }
-      ],
-      "sucursalModel": []
-    },
-    {
-      "localityModel": [
-        {
-          "id": 1253,
-          "descripcion": "SAN PEDRO DE JUJUY",
-          "codigo": "4500",
-          "cp": "4500",
-          "idProvincia": 10
-        }
-      ],
-      "sucursalModel": []
+      "label": "CAPITAL FEDERAL",
+      "postalCodeId": 123,
+      "postalCode": "1426",
+      "provinceId": 1,
+      "province": "CAPITAL FEDERAL",
+      "countryId":58, 
+      "country": "ARGENTINA"
     }
-  ]
 }

@@ -66,10 +66,24 @@ const getValidateBirthDay = async (applicantDayOfBirth) => {
 
 
 // -----> GET Service Localities ####
-const getLocalities = async () => {
+const getLocalities = async (code) => {
     logger.silly('Obteniendo los datos de las localidades');
-    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
-    return JSON.parse(data);
+
+    
+    let resp = {
+        isValid: false
+    }
+    
+    if (!code || code === '' || code.length != 4){
+        logger.silly('Error Codigo Postal invalido');
+        throw new CodeError('El Codigo Postal es invalido', 400, resp);
+    } else if (code === '1426') {
+        logger.silly('Codigo Postal valido');
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaLocalidades;
+    } else if (code === '2222') {
+        logger.silly('Servicio no disponible');
+        throw new CodeError('Servicio no disponible', 504, resp);
+    }
 }
 
 

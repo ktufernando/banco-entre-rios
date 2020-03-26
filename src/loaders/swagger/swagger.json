@@ -804,7 +804,81 @@
           }
         }
       }
+    },
+    "/qr/chargeWithQR/getLocalities/{postalCode}" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para Obtener La Localidad. Casos de prueba: Code  = \"111\" -> El Codigo Postal es invalido. Code = \"1426\" -> El Codigo Postal es Valido. Code = \"222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "postalCode",
+          "in" : "path",
+          "type":"string",
+          "description" : "postalCode",
+          "required" : true,
+          "example" : "1426"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - El Codigo Postal es Valido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El Codigo Postal es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El Codigo Postal es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El Codigo Postal es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+    
   },
   
   "components" : {

@@ -54,9 +54,10 @@ module.exports = (app) => {
     
     // --> GET Localities
     router.get('/chargeWithQR/getLocalities/:postalCode', async (req, res, next) => {
-        logger.silly('Entrada de endpoint para obtener paises');
+        logger.silly('Entrada de endpoint para obtener Localidades');
         try {
-            res.status(200).json(handleSuccessResponse(await qrService.getLocalities()));
+            const code = req.params.postalCode;
+            res.status(200).json(handleSuccessResponse(await qrService.getLocalities(code)));
         } catch (error) {
             next(error);
         }
