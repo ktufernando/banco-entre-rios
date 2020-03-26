@@ -7,10 +7,34 @@ const moment = require('moment');
 
 
 // -----> GET Services Cuil data  ####
-const getCuil = async () => {
+const getCuil = async (cuit) => {
     logger.silly('Obteniendo Cuil');
     const { respuestaCuil } = fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'));
-    return JSON.parse(respuestaCuil);
+
+    let resp = {
+        isValid: false,
+        cuit
+    }
+
+    if (!cuit || cuit === '' || cuit.length != 11) {
+        logger.silly('CUIT invalido');
+        throw new CodeError('El Cuit es invalido', 400, resp);
+    } else if (cuit === '11111111111') {
+        logger.silly('CUIT no valido como empresa');
+        throw new CodeError("CUIT no valido como empresa", 400, resp);
+    } else if (cuit === '22222222222') {
+        logger.silly('Servicio del grupo no disponible');
+        throw new CodeError('Servicio del grupo no disponible', 504, resp);
+    } else if (cuit === '33333333333') {
+        logger.silly('CUIT valido y es monotributista');
+        resp.isValid = true;
+        return resp;
+    } else {
+        logger.silly('CUIT valido pero no es monotributista');
+        resp.isValid = true;
+        return resp;
+    }
+
 }
 
 // -----> GET Service Marital State  ####

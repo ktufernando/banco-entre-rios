@@ -10,10 +10,12 @@ module.exports = (app) => {
 
 
     // --> GET Cuil
-    router.get('/chargeWithQR/getCUIL/:dni', async (req, res, next) => {
+    router.get(`/chargeWithQR/getCUIL/:`, async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener codigo qr');
+        const { cuit } = req.body;
+        console.log(cuit)
         try {
-            res.status(200).json(handleSuccessResponse(await qrService.getCuil()));
+            res.status(200).json(handleSuccessResponse(await qrService.getCuil(cuit)));
         } catch (error) {
             next(error);
         }
