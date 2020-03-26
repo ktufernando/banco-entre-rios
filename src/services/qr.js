@@ -7,32 +7,22 @@ const moment = require('moment');
 
 
 // -----> GET Services Cuil data  ####
-const getCuil = async (cuit) => {
+const getCuil = async (cuil) => {
     logger.silly('Obteniendo Cuil');
-    const { respuestaCuil } = fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'));
-
+    
     let resp = {
-        isValid: false,
-        cuit
+        isValid: false
     }
-
-    if (!cuit || cuit === '' || cuit.length != 11) {
-        logger.silly('CUIT invalido');
-        throw new CodeError('El Cuit es invalido', 400, resp);
-    } else if (cuit === '11111111111') {
-        logger.silly('CUIT no valido como empresa');
-        throw new CodeError("CUIT no valido como empresa", 400, resp);
-    } else if (cuit === '22222222222') {
-        logger.silly('Servicio del grupo no disponible');
-        throw new CodeError('Servicio del grupo no disponible', 504, resp);
-    } else if (cuit === '33333333333') {
-        logger.silly('CUIT valido y es monotributista');
-        resp.isValid = true;
-        return resp;
-    } else {
-        logger.silly('CUIT valido pero no es monotributista');
-        resp.isValid = true;
-        return resp;
+    
+    if (!cuil || cuil === '' || cuil.length != 8){
+        logger.silly('Error de dni');
+        throw new CodeError('El Cuit  es invalido', 400, resp);
+    } else if (cuil === '11111111') {
+        logger.silly('Cuit valido');
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaCuil;
+    } else if (cuil === '22222222') {
+        logger.silly('Servicio no disponible');
+        throw new CodeError('Servicio no disponible', 404, resp);
     }
 
 }
