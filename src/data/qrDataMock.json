@@ -1,173 +1,141 @@
 {
-    "respuestaCuil": 
+  "respuestaCuil": {
+    "cuil": "20957314422"
+  },
+
+  "respuestaEstadoCivil": [
+    {
+      "value": "1",
+      "label": "Soltero/a"
+    },
+    {
+      "value": "2",
+      "label": "Casado/a"
+    },
+    {
+      "value": "3",
+      "label": "Separado/a"
+    },
+    {
+      "value": "4",
+      "label": "Divorciado/a"
+    },
+    {
+      "value": "5",
+      "label": "Viudo/a"
+    },
+    {
+      "value": "6",
+      "label": "Unión Convivencial Registrada"
+    },
+    {
+      "value": "7",
+      "label": "Unión Convivencial No Registrada"
+    }
+  ],
+  "respuestaPaises": [
+    {
+      "value": 174,
+      "label": "AFGANISTAN",
+      "code": "43"
+    },
+    {
+      "value": 62,
+      "label": "ALBANIA",
+      "code": "66"
+    },
+    {
+      "value": 175,
+      "label": "ALBANIA",
+      "code": "36"
+    },
+    {
+      "value": 60,
+      "label": "COREA DEL NORTE",
+      "code": "67"
+    },
+    {
+      "value": 43,
+      "label": "CUBA",
+      "code": "58"
+    },
+    {
+      "value": 75,
+      "label": "DJIBOUTI",
+      "code": "58"
+    },
+    {
+      "value": 90,
+      "label": "GAMBIA",
+      "code": "58"
+    },
+    {
+      "value": 32,
+      "label": "HUNGRIA",
+      "code": "58"
+    },
+    {
+      "value": 105,
+      "label": "INDONESIA",
+      "code": "58"
+    },
+    {
+      "value": 213,
+      "label": "TAILANDIA",
+      "code": "56"
+    }
+  ],
+  "respuestaFechaNacimiento": {
+    "isValid": true
+  },
+  "respuestaLocalidades": [
+    {
+      "localityModel": [
         {
-                
-            "cuil": "20957314422"
-                
-        },
-    
-    "respuestaEstadoCivil": 
-        [
-            {
-            
-            "value": "1",
-            "label": "Soltero/a"
-            },
-            {
-            
-                "value": "2",
-                "label": "Casado/a"
-            },
-            {
-            
-                "value": "3",
-                "label": "Separado/a"
-            },
-            {
-            
-                "value": "4",
-                "label": "Divorciado/a"
-            },
-            {
-            
-                "value": "5",
-                "label": "Viudo/a"
-            },
-            {
-            
-                "value": "6",
-                "label": "Unión Convivencial Registrada"
-            },
-            {
-            
-                "value": "7",
-                "label": "Unión Convivencial No Registrada"
-            }
-        ],
-    "respuestaPaises": [
-            {
-
-                "value": 174,
-                "label": "AFGANISTAN",
-                "code": "43"
-
-            },
-            {
-
-                "value": 62,
-                "label": "ALBANIA",
-                "code": "66"
-    
-            },
-            {
-
-                "value": 175,
-                "label": "ALBANIA",
-                "code": "36"
-    
-            },
-            {
-
-                "value": 60,
-                "label": "COREA DEL NORTE",
-                "code": "67"
-    
-            },
-            {
-
-                "value": 43,
-                "label": "CUBA",
-                "code": "58"
-    
-            },
-            {
-
-                "value": 75,
-                "label": "DJIBOUTI",
-                "code": "58"
-    
-            },
-            {
-
-                "value": 90,
-                "label": "GAMBIA",
-                "code": "58"
-    
-            },
-            {
-
-                "value": 32,
-                "label": "HUNGRIA",
-                "code": "58"
-    
-            },
-            {
-
-                "value": 105,
-                "label": "INDONESIA",
-                "code": "58"
-    
-            },
-            {
-
-                "value": 213,
-                "label": "TAILANDIA",
-                "code": "56"
-    
-            }
-        ],    
-    "respuestaFechaNacimiento":
-        {
-            "isValid": true
-        },
-    "respuestaLocalidades":[
-        {
-            "localityModel": [
-                {
-                    "id": 336,
-                    "descripcion": "CAPITAL FEDERAL",
-                    "codigo": "1426",
-                    "cp": "1426",
-                    "idProvincia": 1
-                }
-            ],
-            "sucursalModel": [] 
-        },
-        {
-            "localityModel": [
-            {
-                "id": 597,
-                "descripcion": "DIAZ",
-                "codigo": "2222",
-                "cp": "2222",
-                "idProvincia": 21
-            }
-            ],
-            "sucursalModel": []
-        },
-        {
-            "localityModel": [
-            {
-                "id": 1225,
-                "descripcion": "ANCA",
-                "codigo": "4321",
-                "cp": "4321",
-                "idProvincia": 22
-            }
-            ],
-            "sucursalModel": []
-        },
-        {
-            "localityModel": [
-            {
-                "id": 1253,
-                "descripcion": "SAN PEDRO DE JUJUY",
-                "codigo": "4500",
-                "cp": "4500",
-                "idProvincia": 10
-            }
-            ],
-            "sucursalModel": []
+          "id": 336,
+          "descripcion": "CAPITAL FEDERAL",
+          "codigo": "1426",
+          "cp": "1426",
+          "idProvincia": 1
         }
-    ]    
-}        
+      ],
+      "sucursalModel": []
+    },
+    {
+      "localityModel": [
+        {
+          "id": 597,
+          "descripcion": "DIAZ",
+          "codigo": "2222",
+          "cp": "2222",
+          "idProvincia": 21
+        }
+      ],
+      "sucursalModel": []
+    },
+    {
+      "localityModel": [
+        {
+          "id": 1225,
+          "descripcion": "ANCA",
+          "codigo": "4321",
+          "cp": "4321",
+          "idProvincia": 22
+        }
+      ],
+      "sucursalModel": []
+    },
+    {
+      "localityModel": [
+        {
+          "id": 1253,
+          "descripcion": "SAN PEDRO DE JUJUY",
+          "codigo": "4500",
+          "cp": "4500",
+          "idProvincia": 10
+        }
+      ],
+      "sucursalModel": []
+    }
+  ]
+}

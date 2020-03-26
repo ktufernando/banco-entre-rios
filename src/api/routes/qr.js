@@ -21,7 +21,7 @@ module.exports = (app) => {
 
     // --> GET Marital State
     router.get('/chargeWithQR/getEstadoCivil', async (req, res, next) => {
-        logger.silly('Entrada de endpoint para obtener estado civil');
+        logger.silly('Entrada de endpoint para obtener estados civiles');
         try {
             res.status(200).json(handleSuccessResponse(await qrService.getMaritalState()));
         } catch (error) {

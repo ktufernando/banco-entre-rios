@@ -15,8 +15,8 @@ const getCuil = async () => {
 // -----> GET Service Maritral State  ####
 const getMaritalState = async () => {
     logger.silly('Obteniendo los datos del estado civil');
-    const data = fs.readFileSync(path.resolve(__dirname, '../data/dataMock.js'));
-    return JSON.parse(data);
+    const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaEstadoCivil;
+    return data;
 }
 
 
