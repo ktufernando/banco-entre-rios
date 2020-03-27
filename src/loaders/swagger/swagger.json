@@ -532,7 +532,7 @@
     "/qr/chargeWithQR/getCUIL/{dni}" : {
       "get" : {
         "tags" : [ "QR" ],
-        "description" : "Servicio para Obtener Cuil. Casos de prueba: DNI  = \"11111\" -> El Dni es invalido. DNI = \"11111111\" -> OK. DNI = \"222222220\" -> Servicio no disponible",
+        "description" : "Servicio para Obtener Cuil. Casos de prueba: DNI  = \"11111\" -> El Dni es invalido. DNI = \"11111111\" -> OK. DNI = \"22222222\" -> Servicio no disponible",
         "parameters" : [ {
           "name" : "dni",
           "in" : "path",
@@ -554,7 +554,7 @@
                     "message" : "OK",
                     "status" : 200,
                     "payload": {
-                      "isValid": true
+                      "cuil": "20111111112"
                     }
                   }
                 }
@@ -829,9 +829,17 @@
                     "error" : false,
                     "message" : "OK",
                     "status" : 200,
-                    "payload": {
-                      "isValid": true
-                    }
+                    "payload": [ 
+                      {
+                        "label": "CAPITAL FEDERAL",
+                        "postalCodeId": 123,
+                        "postalCode": "1426",
+                        "provinceId": 1,
+                        "province": "CAPITAL FEDERAL",
+                        "countryId":58, 
+                        "country": "ARGENTINA"
+                      }
+                    ] 
                   }
                 }
               }

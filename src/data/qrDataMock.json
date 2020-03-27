@@ -88,7 +88,7 @@
   "respuestaFechaNacimiento": {
     "isValid": true
   },
-  "respuestaLocalidades": 
+  "respuestaLocalidades": [ 
     {
       "label": "CAPITAL FEDERAL",
       "postalCodeId": 123,
@@ -98,4 +98,5 @@
       "countryId":58, 
       "country": "ARGENTINA"
     }
+  ]  
 }

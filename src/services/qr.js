@@ -22,7 +22,7 @@ const getCuil = async (dni) => {
         return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaCuil;
     } else if (dni === '22222222') {
         logger.silly('Servicio no disponible');
-        throw new CodeError('Servicio no disponible', 504, resp);
+        throw new CodeError('Servicio no disponible');
     }
 
 }
@@ -82,7 +82,7 @@ const getLocalities = async (code) => {
         return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaLocalidades;
     } else if (code === '2222') {
         logger.silly('Servicio no disponible');
-        throw new CodeError('Servicio no disponible', 504, resp);
+        throw new CodeError('Servicio no disponible', 504);
     }
 }
 
