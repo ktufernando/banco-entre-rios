@@ -26,13 +26,13 @@
   "paths" : {
     "/pymes/credits" : {
       "get" : {
-        "tags" : [ "API - Endpoints" ],
+        "tags" : [ "Pyme" ],
         "description" : "Endpoint Permite obtener un objeto json con los datos para los formularios. Solo ejecutar la Request y se obtendra el objeto json.",
         "responses" : {
           "200" : {
             "description" : "OK",
             "content" : {
-              "Content" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "object",
                   "description" : "Datos Formulario",
@@ -306,7 +306,7 @@
     },
     "/pymes/validateCuit/{cuit}" : {
       "post" : {
-        "tags" : [ "API - Endpoints" ],
+        "tags" : [ "Pyme" ],
         "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isMonotributista: false",
         "parameters" : [ {
           "name" : "cuit",
@@ -402,7 +402,7 @@
     },
     "/pymes/validateSignUp" : {
       "post" : {
-        "tags" : [ "API - Endpoints" ],
+        "tags" : [ "Pyme" ],
         "description" : "Endpoint para validar la inscripcion(pyme). Casos de prueba: nombreApellido = Pepe Argento > Http status code response: 400, nombreApellido = Moni Argento > Http status code response: 504, Cualquier otro caso > Http status code response: 200",
         "consumes": "application/json",
         "requestBody" : {
@@ -528,8 +528,367 @@
           }
         }
       }
+    },
+    "/qr/chargeWithQR/getCUIL/{dni}" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para Obtener Cuil. Casos de prueba: DNI  = \"11111\" -> El Dni es invalido. DNI = \"11111111\" -> OK. DNI = \"22222222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "dni",
+          "in" : "path",
+          "type":"string",
+          "description" : "dni",
+          "required" : true,
+          "example" : "11111111"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "cuil": "20111111112"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El DNI es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El DNI es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El DNI es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qr/chargeWithQR/getEstadoCivil" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para obtener el listado de estados civiles",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Listado de estados civiles",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : [
+                      {
+                        "value": "1",
+                        "label": "Soltero/a"
+                      },
+                      {
+                        "value": "2",
+                        "label": "Casado/a"
+                      },
+                      {
+                        "value": "3",
+                        "label": "Separado/a"
+                      },
+                      {
+                        "value": "4",
+                        "label": "Divorciado/a"
+                      },
+                      {
+                        "value": "5",
+                        "label": "Viudo/a"
+                      },
+                      {
+                        "value": "6",
+                        "label": "Unión Convivencial Registrada"
+                      },
+                      {
+                        "value": "7",
+                        "label": "Unión Convivencial No Registrada"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qr/chargeWithQR/getCountries" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para obtener el listado de paises",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Listado de paises",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" :  [
+                      {
+                        "id": 58,
+                        "descripcion": "ARGENTINA",
+                        "codigo": "80"
+                      },
+                      {
+                        "id": 181,
+                        "descripcion": "ARMENIA",
+                        "codigo": "50"
+                      },
+                      {
+                        "id": 68,
+                        "descripcion": "ARUBA",
+                        "codigo": "92"
+                      },
+                      {
+                        "id": 182,
+                        "descripcion": "ARUBA",
+                        "codigo": "52"
+                      },
+                      {
+                        "id": 69,
+                        "descripcion": "ASCENCION",
+                        "codigo": "93"
+                      },
+                      {
+                        "id": 239,
+                        "descripcion": "ASCENCION",
+                        "codigo": "236"
+                      },
+                      {
+                        "id": 20,
+                        "descripcion": "AUSTRALIA",
+                        "codigo": "21"
+                      },
+                      {
+                        "id": 13,
+                        "descripcion": "AUSTRIA",
+                        "codigo": "13"
+                      },
+                      {
+                        "id": 183,
+                        "descripcion": "AZERBAIDZHA",
+                        "codigo": "59"
+                      },
+                      {
+                        "id": 184,
+                        "descripcion": "BAHAMAS",
+                        "codigo": "60"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qr/chargeWithQR/validateApplicantAge/{applicantDayOfBirth}" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para validar una fecha de nacimiento. Casos de prueba: Fecha de nacimiento = \"10%2F13%2F1980\" -> La fecha de nacimiento es invalida. Fecha de nacimiento = \"10%2F01%2F3000\" -> La fecha de nacimiento es mayor a la fecha actual. Fecha de nacimiento = \"10%2F01%2F1980\" -> OK",
+        "parameters" : [ {
+          "name" : "applicantDayOfBirth",
+          "in" : "path",
+          "type":"string",
+          "description" : "Fecha de nacimiento",
+          "required" : true,
+          "example" : "10%2F01%2F1980"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - Fecha valida",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - Fecha de nacimiento invalida",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response fecha de nacimiento invalida",
+                  "example" : {
+                    "error": {
+                        "message": "La fecha de nacimiento en invalida"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - Fecha de nacimiento es mayor a la fecha actual",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Fecha de nacimiento es mayor a la fecha actual",
+                  "example" :{
+                    "error": {
+                        "message": "Fecha de nacimiento es mayor a la fecha actual"
+                    },
+                    "payload": {
+                        "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qr/chargeWithQR/getLocalities/{postalCode}" : {
+      "get" : {
+        "tags" : [ "QR" ],
+        "description" : "Servicio para Obtener La Localidad. Casos de prueba: Code  = \"111\" -> El Codigo Postal es invalido. Code = \"1426\" -> El Codigo Postal es Valido. Code = \"222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "postalCode",
+          "in" : "path",
+          "type":"string",
+          "description" : "postalCode",
+          "required" : true,
+          "example" : "1426"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - El Codigo Postal es Valido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": [ 
+                      {
+                        "label": "CAPITAL FEDERAL",
+                        "postalCodeId": 123,
+                        "postalCode": "1426",
+                        "provinceId": 1,
+                        "province": "CAPITAL FEDERAL",
+                        "countryId":58, 
+                        "country": "ARGENTINA"
+                      }
+                    ] 
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El Codigo Postal es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El Codigo Postal es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El Codigo Postal es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
+    
   },
+  
   "components" : {
     "schemas" : {
       "validateSignUpRequest" : {

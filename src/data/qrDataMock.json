@@ -1,0 +1,102 @@
+{
+  "respuestaCuil": {
+    "cuil": "20111111112"
+  },
+
+  "respuestaEstadoCivil": [
+    {
+      "value": "1",
+      "label": "Soltero/a"
+    },
+    {
+      "value": "2",
+      "label": "Casado/a"
+    },
+    {
+      "value": "3",
+      "label": "Separado/a"
+    },
+    {
+      "value": "4",
+      "label": "Divorciado/a"
+    },
+    {
+      "value": "5",
+      "label": "Viudo/a"
+    },
+    {
+      "value": "6",
+      "label": "Unión Convivencial Registrada"
+    },
+    {
+      "value": "7",
+      "label": "Unión Convivencial No Registrada"
+    }
+  ],
+  "respuestaPaises": [
+    {
+      "id": 58,
+      "descripcion": "ARGENTINA",
+      "codigo": "80"
+    },
+    {
+      "id": 181,
+      "descripcion": "ARMENIA",
+      "codigo": "50"
+    },
+    {
+      "id": 68,
+      "descripcion": "ARUBA",
+      "codigo": "92"
+    },
+    {
+      "id": 182,
+      "descripcion": "ARUBA",
+      "codigo": "52"
+    },
+    {
+      "id": 69,
+      "descripcion": "ASCENCION",
+      "codigo": "93"
+    },
+    {
+      "id": 239,
+      "descripcion": "ASCENCION",
+      "codigo": "236"
+    },
+    {
+      "id": 20,
+      "descripcion": "AUSTRALIA",
+      "codigo": "21"
+    },
+    {
+      "id": 13,
+      "descripcion": "AUSTRIA",
+      "codigo": "13"
+    },
+    {
+      "id": 183,
+      "descripcion": "AZERBAIDZHA",
+      "codigo": "59"
+    },
+    {
+      "id": 184,
+      "descripcion": "BAHAMAS",
+      "codigo": "60"
+    }
+  ],
+  "respuestaFechaNacimiento": {
+    "isValid": true
+  },
+  "respuestaLocalidades": [ 
+    {
+      "label": "CAPITAL FEDERAL",
+      "postalCodeId": 123,
+      "postalCode": "1426",
+      "provinceId": 1,
+      "province": "CAPITAL FEDERAL",
+      "countryId":58, 
+      "country": "ARGENTINA"
+    }
+  ]  
+}

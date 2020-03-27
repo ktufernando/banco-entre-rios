@@ -27,8 +27,8 @@ module.exports = (app) => {
     // --> POST ---> Cuit
     router.post("/validateCuit/:cuit", async (req, res, next) => {
         logger.silly(`Entrada de endpoint para verificar CUIT pyme con el request body: ${req.body}`);
-        const cuit = req.params.cuit;
         try {
+            const cuit = req.params.cuit;
             res.status(200).json(handleSuccessResponse(await pymeService.cuitValidator(cuit)));
         } catch (error) {
             next(error);
@@ -39,8 +39,8 @@ module.exports = (app) => {
     // --> POST ---> Inscripcion
     router.post("/validateSignUp", async (req, res, next) => {
         logger.silly(`Entrada de endpoint para validar inscripción pyme con el request body: ${req.body}`);
-        const formData = req.body;
         try {
+            const formData = req.body;
             res.status(200).json(handleSuccessResponse(await pymeService.enrollmentValidation(formData)));
         } catch (error) {
             next(error);

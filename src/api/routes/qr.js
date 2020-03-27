@@ -10,10 +10,12 @@ module.exports = (app) => {
 
 
     // --> GET Cuil
-    router.get('/chargeWithQR/getCUIL/:dni', async (req, res, next) => {
+    router.get(`/chargeWithQR/getCUIL/:dni`, async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener codigo qr');
+    
         try {
-            res.status(200).json(handleSuccessResponse(await qrService.getCuil()));
+            const dni = req.params.dni;
+            res.status(200).json(handleSuccessResponse(await qrService.getCuil(dni)));
         } catch (error) {
             next(error);
         }
@@ -21,7 +23,7 @@ module.exports = (app) => {
 
     // --> GET Marital State
     router.get('/chargeWithQR/getEstadoCivil', async (req, res, next) => {
-        logger.silly('Entrada de endpoint para obtener estado civil');
+        logger.silly('Entrada de endpoint para obtener estados civiles');
         try {
             res.status(200).json(handleSuccessResponse(await qrService.getMaritalState()));
         } catch (error) {
@@ -41,9 +43,10 @@ module.exports = (app) => {
 
     // --> GET date of birth
     router.get('/chargeWithQR/validateApplicantAge/:applicantDayOfBirth', async (req, res, next) => {
-        logger.silly('Entrada de endpoint para obtener paises');
+        logger.silly('Entrada de endpoint para verificar la fecha de nacimiento');
         try {
-            res.status(200).json(handleSuccessResponse(await qrService.getValidateBirdtDay()));
+            const applicantDayOfBirth = req.params.applicantDayOfBirth;
+            res.status(200).json(handleSuccessResponse(await qrService.getValidateBirthDay(applicantDayOfBirth)));
         } catch (error) {
             next(error);
         }
@@ -51,9 +54,10 @@ module.exports = (app) => {
     
     // --> GET Localities
     router.get('/chargeWithQR/getLocalities/:postalCode', async (req, res, next) => {
-        logger.silly('Entrada de endpoint para obtener paises');
+        logger.silly('Entrada de endpoint para obtener Localidades');
         try {
-            res.status(200).json(handleSuccessResponse(await qrService.getLocalities()));
+            const code = req.params.postalCode;
+            res.status(200).json(handleSuccessResponse(await qrService.getLocalities(code)));
         } catch (error) {
             next(error);
         }
