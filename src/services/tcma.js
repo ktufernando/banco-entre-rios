@@ -18,7 +18,7 @@ const getCuil = async (dni) => {
         throw new CodeError('El dni es invalido', 400, resp);
     } else if (dni === '11111111') {
         logger.silly('dni valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaCuil;
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaCuil;
     } else if (dni === '22222222') {
         logger.silly('Servicio no disponible');
         throw new CodeError('Servicio no disponible');
@@ -30,7 +30,7 @@ const getCuil = async (dni) => {
 // -----> GET Service Countries ####
 const getCountries = async () => {
     logger.silly('Obteniendo los datos de paises en tcma');
-    return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaPaises;
+    return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaPaises;
 }
 
 
@@ -47,7 +47,7 @@ const getActivities = async (cuil) => {
         throw new CodeError('El cuil es invalido', 400, resp);
     } else if (cuil === '11111111') {
         logger.silly('cuil valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaPaises;
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaPaises;
     } else if (cuil === '22222222') {
         logger.silly('Servicio no disponible 504');
         throw new CodeError('Servicio no disponible');
@@ -59,7 +59,7 @@ const getActivities = async (cuil) => {
 // -----> GET Service Marital State  ####
 const getMaritalState = async () => {
     logger.silly('Obteniendo los datos de estados civiles en tcma');
-    const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaEstadoCivil;
+    const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaEstadoCivil;
     return data;
 }
 
@@ -77,7 +77,7 @@ const getLocalities = async (code) => {
         throw new CodeError('El Codigo Postal es invalido', 400, resp);
     } else if (code === '1426') {
         logger.silly('Codigo Postal valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaLocalidades;
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaLocalidades;
     } else if (code === '2222') {
         logger.silly('Servicio no disponible');
         throw new CodeError('Servicio no disponible', 504);
@@ -121,7 +121,7 @@ const getValidateCuil = async (cuil) => {
         throw new CodeError('El cuil es invalido', 400, resp);
     } else if (cuil === '11111111') {
         logger.silly('cuil valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaCuil;
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaValidacionCuil;
     } else if (cuil === '22222222') {
         logger.silly('Servicio no disponible');
         throw new CodeError('Servicio no disponible');
