@@ -7,7 +7,7 @@ La app usa una base de datos no relacional (MongoDB) y consume servicios backend
 
 ## Acerca del código
 
-La applicación está hecho desde cero. El stack tecnológico es full Javascript con [NodeJS](https://nodejs.org).
+La applicación está hecha desde cero. El stack tecnológico es full Javascript con [NodeJS](https://nodejs.org).
 
 El proyecto utiliza las siguientes dependencias(librerias) fundamentales para la solución:
 
@@ -39,7 +39,7 @@ $ npm install
 
 En la base del directorio del proyecto se puede encontrar el archivo `.env` con propiedades de entorno de la aplicación.
 
-En este directorio puede configurar: 
+En este archivo puede configurar: 
 * Ambiente
 * Mongo uri
 * Puerto de la aplicación
@@ -105,7 +105,8 @@ Estos logs se escribirán en un formato JSON determinado para poder ser tomados 
 
 La última pieza sugerida es una forma confiable de ejecutar aplicaciones Node.js en ambientes productivos. 
 
-[PM2](https://pm2.keymetrics.io/) es un administrador de procesos de Node.js, se puede usar para mantener las aplicaciones en ejecución. Instalar pm2 con npm:
+[PM2](https://pm2.keymetrics.io/) es un administrador de procesos de Node.js, se puede usar para mantener las aplicaciones en ejecución. 
+Instalar pm2 con npm:
 
 ```sh
 $ npm install -g pm2
