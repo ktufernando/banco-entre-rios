@@ -84,8 +84,8 @@ module.exports = (app) => {
         logger.silly('Entrada de endpoint para obtener Cuil Tarjetas');
     
         try {
-            const dni = req.params.dni;
-            res.status(200).json(handleSuccessResponse(await tcmaService.getValidateCuil(dni)));
+            const cuil = req.params.cuil;
+            res.status(200).json(handleSuccessResponse(await tcmaService.getValidateCuil(cuil)));
         } catch (error) {
             next(error);
         }
