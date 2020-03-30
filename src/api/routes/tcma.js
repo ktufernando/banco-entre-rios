@@ -37,7 +37,8 @@ module.exports = (app) => {
     router.get('/getActivities/:cuil', async (req, res, next) => {
         logger.silly('Entrada de endpoint para obtener Actividades de Tarjetas');
         try {
-            res.status(200).json(handleSuccessResponse(await tcmaService.getActivities()));
+            const cuil = req.params.cuil;
+            res.status(200).json(handleSuccessResponse(await tcmaService.getActivities(cuil)));
         } catch (error) {
             next(error);
         }

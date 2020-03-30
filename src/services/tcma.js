@@ -10,11 +10,11 @@ const getCuil = async (dni) => {
     logger.silly('Obteniendo dni en TCMA');
     
     let resp = {
-        isValid: false
+        isValid: false,
     }
     
     if (!dni || dni === '' || dni.length != 8){
-        logger.silly('Error de invalido');
+        logger.silly('Error de Cuil invalido');
         throw new CodeError('El dni es invalido', 400, resp);
     } else if (dni === '11111111') {
         logger.silly('dni valido');
@@ -35,9 +35,24 @@ const getCountries = async () => {
 
 
 // -----> GET Service Activities ####
-const getActivities = async () => {
+const getActivities = async (cuil) => {
     logger.silly('Obteniendo las Actividades en tcma');
-    return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaPaises;
+    
+    let resp = {
+        isValid: false
+    }
+    
+    if (!cuil || cuil === '' || cuil.length != 8){
+        logger.silly('Error de invalido');
+        throw new CodeError('El cuil es invalido', 400, resp);
+    } else if (cuil === '11111111') {
+        logger.silly('cuil valido');
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaPaises;
+    } else if (cuil === '22222222') {
+        logger.silly('Servicio no disponible 504');
+        throw new CodeError('Servicio no disponible');
+    }
+
 }
 
 
@@ -46,6 +61,27 @@ const getMaritalState = async () => {
     logger.silly('Obteniendo los datos de estados civiles en tcma');
     const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaEstadoCivil;
     return data;
+}
+
+
+// -----> GET Service Localities ####
+const getLocalities = async (code) => {
+    logger.silly('Obteniendo los datos de las localidades en tcma');
+
+    let resp = {
+        isValid: false
+    }
+    
+    if (!code || code === '' || code.length != 4){
+        logger.silly('Error Codigo Postal invalido');
+        throw new CodeError('El Codigo Postal es invalido', 400, resp);
+    } else if (code === '1426') {
+        logger.silly('Codigo Postal valido');
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaLocalidades;
+    } else if (code === '2222') {
+        logger.silly('Servicio no disponible');
+        throw new CodeError('Servicio no disponible', 504);
+    }
 }
 
 
@@ -94,25 +130,6 @@ const getValidateCuil = async (cuil) => {
 }
 
 
-// -----> GET Service Localities ####
-const getLocalities = async (code) => {
-    logger.silly('Obteniendo los datos de las localidades en tcma');
-
-    let resp = {
-        isValid: false
-    }
-    
-    if (!code || code === '' || code.length != 4){
-        logger.silly('Error Codigo Postal invalido');
-        throw new CodeError('El Codigo Postal es invalido', 400, resp);
-    } else if (code === '1426') {
-        logger.silly('Codigo Postal valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/qrDataMock.json'))).respuestaLocalidades;
-    } else if (code === '2222') {
-        logger.silly('Servicio no disponible');
-        throw new CodeError('Servicio no disponible', 504);
-    }
-}
 
 
 // -----> POST Service Validate Step 1 ####
@@ -121,16 +138,15 @@ const postStepOne = async (formData) => {
     if (typeof formData === "string") {
         formData = JSON.parse(formData);
     }
-
     const { nombre } = formData;
 
-    if (nombre === 'Fernando Diaz') {
-        logger.silly('Entrando a la validacion Fernando Diaz');
+    if (nombre === 'Fernando') {
+        logger.silly('Entrando a la validacion Fernando');
         throw new CodeError("Dato de entrada incorrecto", 400, formData);
-    } else if (nombre === 'Julio Diaz') {
-        logger.silly('Enrando a la validacion Julio Diaz');
-        throw new CodeError('Servicio del grupo no disponible', 504, formData)
-    } else {
+    } else if (nombre === 'Julio') {
+        logger.silly('Enrando a la validacion Julio');
+        throw new CodeError('Servicio del grupo no disponible', 504)
+    } else if(nombre === 'Luis'){
         logger.silly('Datos step 1 correctos. Mock OK');
         return formData;
     }
@@ -222,7 +238,7 @@ const postStepFourWithCard = async (formData) => {
     } else if (nombreAdicional === 'Federico') {
         logger.silly('Enrando a la validacion step 4 Federico');
         throw new CodeError('Servicio del grupo no disponible', 504, formData)
-    } else {
+    } else if(nombreAdicional === "Luis"){
         logger.silly('La inscripcion a sido validada. Mock OK');
         return formData;
     }
