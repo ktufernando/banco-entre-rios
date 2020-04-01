@@ -307,7 +307,7 @@
     "/pymes/validateCuit/{cuit}" : {
       "post" : {
         "tags" : [ "Pyme" ],
-        "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isMonotributista: false",
+        "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isCompany: true",
         "parameters" : [ {
           "name" : "cuit",
           "in" : "path",
@@ -318,19 +318,20 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Cuit igual a \"33333333333\"",
+            "description" : "Http status code response 200, mensaje OK",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Http status code response 200 mensaje OK",
+                  "description" : "Cuit valido y es monotributista",
                   "example" : {
                     "error" : false,
                     "message" : "OK",
                     "status" : 200,
                     "payload" : {
                       "isValid" : true,
-                      "isMonotributista" : false
+                      "isMonotributista" : true,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -338,19 +339,20 @@
             }
           },
           "400" : {
-            "description" : "Cuit menor o mayor a 11 caracteres",
+            "description" : "Http status code response 400",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Mensaje \"El CUIT es invalido\"",
+                  "description" : "CUIT invalido",
                   "example" : {
                     "error" : {
                       "message" : "El Cuit es invalido"
                     },
                     "payload" : {
                       "isValid" : false,
-                      "isMonotributista" : false
+                      "isMonotributista" : false,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -358,19 +360,20 @@
             }
           },
           "402" : {
-            "description" : "Cuit igual a \"11111111111\"",
+            "description" : "Http status code response 402",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Mensaje \"CUIT no valido como empresa\"",
+                  "description" : "CUIT no valido como empresa",
                   "example" : {
                     "error" : {
                       "message" : "CUIT no valido como empresa"
                     },
                     "payload" : {
                       "isValid" : false,
-                      "isMonotributista" : false
+                      "isMonotributista" : false,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -378,19 +381,20 @@
             }
           },
           "504" : {
-            "description" : "Cuit igual a \"22222222222\"",
+            "description" : "Http status code response 504",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Mensaje \"Servicio del grupo no disponible\"",
+                  "description" : "Servicio del grupo no disponible",
                   "example" : {
                     "error" : {
                       "message" : "Servicio del grupo no disponible"
                     },
                     "payload" : {
                       "isValid" : false,
-                      "isMonotributista" : false
+                      "isMonotributista" : false,
+                      "isCompany" : false
                     }
                   }
                 }
