@@ -230,6 +230,5 @@ module.exports = {
     postStepOne,
     postSteptwo,
     postStepThree,
-    postStepThreeWithCard,
     postStepFourWithCard
 };

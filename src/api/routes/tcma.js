@@ -129,16 +129,6 @@ module.exports = (app) => {
     });
 
 
-    // --> POST ---> Step 3 w/ additional Card
-    router.post("/aditionalCardData", async (req, res, next) => {
-        logger.silly(`Entrada de endpoint Step 3 con adicional tarjeta`);
-        try {
-            const formData = req.body;
-            res.status(200).json(handleSuccessResponse(await tcmaService.postStepThreeWithCard(formData)));
-        } catch (error) {
-            next(error);
-        }
-    });
 
 
     // --> POST ---> Step 4 w/ additional Card
