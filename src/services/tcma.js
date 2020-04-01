@@ -118,7 +118,7 @@ const getValidateCuil = async (cuil) => {
     
     if (!cuil || cuil === '' || cuil.length != 8){
         logger.silly('Error de invalido');
-        throw new CodeError('El cuil es invalido', 400, resp);
+        throw new CodeError('El Cuil es invalido', 400, resp);
     } else if (cuil === '11111111') {
         logger.silly('cuil valido');
         return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaValidacionCuil;
