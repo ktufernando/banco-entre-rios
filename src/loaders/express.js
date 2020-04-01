@@ -1,6 +1,7 @@
 const routes = require('../api');
 const config = require('../config');
 const logger = require('./logger');
+const { CodeError } = require('../utils/ApplicationError');
 const swaggerDocument = require('./swagger/swagger.json');
 const swaggerUi = require('swagger-ui-express');
 const express = require('express');
@@ -49,8 +50,7 @@ module.exports = (app) => {
 
     /// catch 404 and forward to error handler
     app.use((req, res, next) => {
-        const err = new Error('Not Found');
-        err['status'] = 404;
+        const err = new CodeError('Not Found', 404);
         next(err);
     });
 

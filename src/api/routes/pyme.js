@@ -24,8 +24,8 @@ module.exports = (app) => {
         }
     });
     
-    // --> POST ---> Cuit
-    router.post("/validateCuit/:cuit", async (req, res, next) => {
+    // --> GET ---> Cuit
+    router.get("/validateCuit/:cuit", async (req, res, next) => {
         logger.silly(`Entrada de endpoint para verificar CUIT pyme con el request body: ${req.body}`);
         try {
             const cuit = req.params.cuit;
