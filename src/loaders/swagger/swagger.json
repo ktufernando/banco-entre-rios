@@ -1035,6 +1035,90 @@
         }
       }
     },
+    "/tcma/getActivities/{cuil}" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111\" -> OK. Cuil = \"22222222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "cuil",
+          "in" : "path",
+          "type":"string",
+          "description" : "cuil",
+          "required" : true,
+          "example" : "11111111"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": [
+                      {
+                          "value": "000007",
+                          "label": "JUBILADO",
+                          "code": "212"
+                      },
+                      {
+                        "value": "000008",
+                        "label": "ESTUDIANTE",
+                        "code": "212"
+                      },
+                      {
+                        "value": "000009",
+                        "label": "AMA DE CASA",
+                        "code": "321"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El Cuil es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El Cuil es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El Cuil es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/tcma/getEstadoCivil" : {
       "get" : {
         "tags" : [ "TCMA" ],
@@ -1246,14 +1330,14 @@
     "/tcma/validateCuil/{cuil}" : {
       "get" : {
         "tags" : [ "TCMA" ],
-        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111\" -> OK. Cuil = \"22222222\" -> Servicio no disponible",
+        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111111\" -> OK. Cuil = \"22222222222\" -> Servicio no disponible",
         "parameters" : [ {
           "name" : "cuil",
           "in" : "path",
           "type":"string",
           "description" : "cuil",
           "required" : true,
-          "example" : "11111111"
+          "example" : "11111111111"
         } ],
         "responses" : {
           "200" : {
@@ -1316,9 +1400,7 @@
         }
       }
     }
-
-    
-  },
+},
   
   "components" : {
     "schemas" : {

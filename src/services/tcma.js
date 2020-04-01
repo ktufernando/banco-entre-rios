@@ -46,8 +46,8 @@ const getActivities = async (cuil) => {
         logger.silly('Error de invalido');
         throw new CodeError('El cuil es invalido', 400, resp);
     } else if (cuil === '11111111') {
-        logger.silly('cuil valido');
-        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaPaises;
+        logger.silly('Cuil valido');
+        return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaActividades;
     } else if (cuil === '22222222') {
         logger.silly('Servicio no disponible 504');
         throw new CodeError('Servicio no disponible');
@@ -116,13 +116,13 @@ const getValidateCuil = async (cuil) => {
         isValid: false
     }
     
-    if (!cuil || cuil === '' || cuil.length != 8){
+    if (!cuil || cuil === '' || cuil.length != 11){
         logger.silly('Error de invalido');
         throw new CodeError('El Cuil es invalido', 400, resp);
-    } else if (cuil === '11111111') {
+    } else if (cuil === '11111111111') {
         logger.silly('cuil valido');
         return JSON.parse(fs.readFileSync(path.resolve(__dirname, '../data/tcmaDataMock.json'))).respuestaValidacionCuil;
-    } else if (cuil === '22222222') {
+    } else if (cuil === '22222222222') {
         logger.silly('Servicio no disponible');
         throw new CodeError('Servicio no disponible');
     }
@@ -136,17 +136,28 @@ const postStepOne = async (formData) => {
     if (typeof formData === "string") {
         formData = JSON.parse(formData);
     }
+
+    let resp = {
+        isValid: false,
+        formData
+    }
+
     const { nombre } = formData;
 
     if (nombre === 'Fernando') {
         logger.silly('Entrando a la validacion Fernando');
-        throw new CodeError("Dato de entrada incorrecto", 400, formData);
+        throw new CodeError("Dato de entrada incorrecto", 400, resp);
     } else if (nombre === 'Julio') {
-        logger.silly('Enrando a la validacion Julio');
+        logger.silly('Entrando a la validacion Julio');
         throw new CodeError('Servicio del grupo no disponible', 504)
     } else if(nombre === 'Luis'){
         logger.silly('Datos step 1 correctos. Mock OK');
-        return formData;
+        let resp = { isValid: true, formData }
+        return resp;
+    }else {
+        logger.silly('Datos step 1 Nombre no encontrado');
+        throw new CodeError("Nombre no encontrado", 400, resp);
+
     }
 
 }
@@ -159,14 +170,25 @@ const postSteptwo = async (formData) => {
         formData = JSON.parse(formData);
     }
 
+    let resp = {
+        isValid: false,
+        formData
+    }
+
     const { sexo } = formData;
 
     if (sexo === '1') {
         logger.silly('Entrando a la validacion step 2  sexo  1');
-        throw new CodeError("Dato de entrada incorrecto", 400, formData);
+        let resp = { isValid: true, formData }
+        return resp;
     } else if (sexo === '2') {
-        logger.silly('Entrando a la validacion step 2 de sexo 2. Mock "OK"');
-        return formData
+        logger.silly('Entrando a la validacion step 2 de sexo 2.');
+        let resp = { isValid: true, formData }
+        return resp;
+    } else {
+        logger.silly('Datos Step 2 Sexo no especificado');
+        throw new CodeError("Sexo no especificado", 400, resp);
+
     }
 
 }
@@ -179,18 +201,28 @@ const postStepThree = async (formData) => {
         formData = JSON.parse(formData);
     }
 
+    let resp = {
+        isValid: false,
+        formData
+    }
+
     const { entregaCalle } = formData;
+
     logger.silly(`Calle de entrega ${entregaCalle}`);
 
     if (entregaCalle === '1111') {
         logger.silly('Entrando Error dato incorrecto');
-        throw new CodeError("Dato de entrada incorrecto", 400, formData);
+        throw new CodeError("Dato de entrada incorrecto", 400, resp);
     } else if (entregaCalle === '2222') {
         logger.silly('Entrando Error Servicio no disponible');
-        throw new CodeError('Servicio no disponible', 504, formData)
+        throw new CodeError('Servicio no disponible', 504, resp)
     } else if(entregaCalle === '3333'){
         logger.silly('Los datos step 3 son correctos. Mock OK');
-        return formData;
+        let resp = { isValid: true, formData }
+        return resp;
+    } else {
+        logger.silly('Datos step 3 Calle no coincide');
+        throw new CodeError("Calle no encontrada", 400, resp);
     }
 
 }
@@ -203,18 +235,28 @@ const postStepFourWithCard = async (formData) => {
         formData = JSON.parse(formData);
     }
 
+    let resp = {
+        isValid: false,
+        formData
+    }
+
     const { nombreAdicional } = formData;
     logger.silly(`Nombre Adicional ${nombreAdicional}`);
 
     if (nombreAdicional === 'Franchesco') {
         logger.silly('Entrando a la validacion step 4 Franchesco');
-        throw new CodeError("Dato de entrada incorrecto", 400, formData);
+        throw new CodeError("Dato de entrada incorrecto", 400, resp);
     } else if (nombreAdicional === 'Federico') {
         logger.silly('Enrando a la validacion step 4 Federico');
-        throw new CodeError('Servicio del grupo no disponible', 504, formData)
+        throw new CodeError('Servicio del grupo no disponible', 504, resp)
     } else if(nombreAdicional === "Luis"){
         logger.silly('La inscripcion a sido validada. Mock OK');
-        return formData;
+        let resp = {isValid : true, formData}
+        return resp;
+    } else {
+        logger.silly('Datos step 4 Nombre adicional invalido');
+        throw new CodeError("Nombre adicional no es valido", 400, resp);
+
     }
 
 }
