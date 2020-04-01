@@ -60,8 +60,8 @@
         "label": "AMA DE CASA",
         "code": "321"
       }
-  ],
-  "respuestaEstadoCivil": [
+    ],
+    "respuestaEstadoCivil": [
     {
       "value": "1",
       "label": "Soltero/a"
@@ -90,8 +90,8 @@
       "value": "7",
       "label": "Unión Convivencial No Registrada"
     }
-  ],
-  "respuestaLocalidades": [ 
+    ],
+    "respuestaLocalidades": [ 
     {
       "label": "CAPITAL FEDERAL",
       "postalCodeId": 123,
@@ -101,14 +101,11 @@
       "countryId":58, 
       "country": "ARGENTINA"
     }
-  ],
-  "respuestaFechaNacimiento": {
+    ],
+    "respuestaFechaNacimiento": {
     "isValid": true
-  },
-  "respuestaValidacionCuil": {
+    },
+    "respuestaValidacionCuil": {
     "isValid": true
-  }
-
-
-
+    }
 }

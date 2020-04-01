@@ -130,8 +130,6 @@ const getValidateCuil = async (cuil) => {
 }
 
 
-
-
 // -----> POST Service Validate Step 1 ####
 const postStepOne = async (formData) => {
     logger.silly('Entrando a la validacion Step 1 tcma');
@@ -192,30 +190,6 @@ const postStepThree = async (formData) => {
         throw new CodeError('Servicio no disponible', 504, formData)
     } else if(entregaCalle === '3333'){
         logger.silly('Los datos step 3 son correctos. Mock OK');
-        return formData;
-    }
-
-}
-
-
-// -----> POST Service Validate Step 3 w/ additional card ####
-const postStepThreeWithCard = async (formData) => {
-    logger.silly('Entrando a la validacion Step 3 tcma con tarjeta adicional');
-    if (typeof formData === "string") {
-        formData = JSON.parse(formData);
-    }
-
-    const { entregaCalle } = formData;
-    logger.silly(`Calle de entrega ${entregaCalle}`);
-
-    if (entregaCalle === '1111') {
-        logger.silly('Entrando Error dato incorrecto');
-        throw new CodeError("Dato de entrada incorrecto", 400, formData);
-    } else if (entregaCalle === '2222') {
-        logger.silly('Entrando Error Servicio no disponible');
-        throw new CodeError('Servicio no disponible', 504, formData)
-    } else {
-        logger.silly('La inscripcion step 3 a sido validada. Mock OK');
         return formData;
     }
 
