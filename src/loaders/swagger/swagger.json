@@ -1042,14 +1042,14 @@
     "/tcma/getActivities/{cuil}" : {
       "get" : {
         "tags" : [ "TCMA" ],
-        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111\" -> OK. Cuil = \"22222222\" -> Servicio no disponible",
+        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111111\" -> OK. Cuil = \"22222222222\" -> Servicio no disponible",
         "parameters" : [ {
           "name" : "cuil",
           "in" : "path",
           "type":"string",
           "description" : "cuil",
           "required" : true,
-          "example" : "11111111"
+          "example" : "11111111111"
         } ],
         "responses" : {
           "200" : {
