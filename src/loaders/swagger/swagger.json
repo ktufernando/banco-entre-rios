@@ -678,56 +678,46 @@
                     "status" : 200,
                     "payload" :  [
                       {
-                        "id": 58,
-                        "descripcion": "ARGENTINA",
-                        "codigo": "80"
+                        "value": 58,
+                        "label": "ARGENTINA",
+                        "code": "80"
                       },
                       {
-                        "id": 181,
-                        "descripcion": "ARMENIA",
-                        "codigo": "50"
+                        "value": 181,
+                        "label": "ARMENIA",
+                        "code": "50"
                       },
                       {
-                        "id": 68,
-                        "descripcion": "ARUBA",
-                        "codigo": "92"
+                        "value": 68,
+                        "label": "ARUBA",
+                        "code": "92"
                       },
                       {
-                        "id": 182,
-                        "descripcion": "ARUBA",
-                        "codigo": "52"
+                        "value": 182,
+                        "label": "ARUBA",
+                        "code": "52"
                       },
                       {
-                        "id": 69,
-                        "descripcion": "ASCENCION",
-                        "codigo": "93"
+                        "value": 69,
+                        "label": "ASCENCION",
+                        "code": "93"
                       },
                       {
-                        "id": 239,
-                        "descripcion": "ASCENCION",
-                        "codigo": "236"
+                        "value": 239,
+                        "label": "ASCENCION",
+                        "code": "236"
                       },
                       {
-                        "id": 20,
-                        "descripcion": "AUSTRALIA",
-                        "codigo": "21"
+                        "value": 20,
+                        "label": "AUSTRALIA",
+                        "code": "21"
                       },
                       {
-                        "id": 13,
-                        "descripcion": "AUSTRIA",
-                        "codigo": "13"
-                      },
-                      {
-                        "id": 183,
-                        "descripcion": "AZERBAIDZHA",
-                        "codigo": "59"
-                      },
-                      {
-                        "id": 184,
-                        "descripcion": "BAHAMAS",
-                        "codigo": "60"
+                        "value": 13,
+                        "label": "AUSTRIA",
+                        "code": "13"
                       }
-                    ]
+                  ]
                   }
                 }
               }
@@ -979,58 +969,48 @@
                     "error" : false,
                     "message" : "OK",
                     "status" : 200,
-                    "payload" :  [
+                    "payload" :   [
                       {
-                        "id": 58,
-                        "descripcion": "ARGENTINA",
-                        "codigo": "80"
+                        "value": 58,
+                        "label": "ARGENTINA",
+                        "code": "80"
                       },
                       {
-                        "id": 181,
-                        "descripcion": "ARMENIA",
-                        "codigo": "50"
+                        "value": 181,
+                        "label": "ARMENIA",
+                        "code": "50"
                       },
                       {
-                        "id": 68,
-                        "descripcion": "ARUBA",
-                        "codigo": "92"
+                        "value": 68,
+                        "label": "ARUBA",
+                        "code": "92"
                       },
                       {
-                        "id": 182,
-                        "descripcion": "ARUBA",
-                        "codigo": "52"
+                        "value": 182,
+                        "label": "ARUBA",
+                        "code": "52"
                       },
                       {
-                        "id": 69,
-                        "descripcion": "ASCENCION",
-                        "codigo": "93"
+                        "value": 69,
+                        "label": "ASCENCION",
+                        "code": "93"
                       },
                       {
-                        "id": 239,
-                        "descripcion": "ASCENCION",
-                        "codigo": "236"
+                        "value": 239,
+                        "label": "ASCENCION",
+                        "code": "236"
                       },
                       {
-                        "id": 20,
-                        "descripcion": "AUSTRALIA",
-                        "codigo": "21"
+                        "value": 20,
+                        "label": "AUSTRALIA",
+                        "code": "21"
                       },
                       {
-                        "id": 13,
-                        "descripcion": "AUSTRIA",
-                        "codigo": "13"
-                      },
-                      {
-                        "id": 183,
-                        "descripcion": "AZERBAIDZHA",
-                        "codigo": "59"
-                      },
-                      {
-                        "id": 184,
-                        "descripcion": "BAHAMAS",
-                        "codigo": "60"
+                        "value": 13,
+                        "label": "AUSTRIA",
+                        "code": "13"
                       }
-                    ]
+                  ],
                   }
                 }
               }
