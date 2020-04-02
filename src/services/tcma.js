@@ -166,10 +166,6 @@ const postStepOne = async (formData) => {
 // -----> POST Service Validate Step 2 ####
 const postSteptwo = async (formData) => {
     logger.silly('Entrando a la validacion Step 2 tcma');
-    if (typeof formData === "string") {
-        formData = JSON.parse(formData);
-    }
-
     let resp = {
         isValid: false,
         formData
@@ -177,11 +173,11 @@ const postSteptwo = async (formData) => {
 
     const { sexo } = formData;
 
-    if (sexo === '1') {
+    if (sexo === 1) {
         logger.silly('Entrando a la validacion step 2  sexo  1');
         let resp = { isValid: true, masculino: true, formData }
         return resp;
-    } else if (sexo === '2') {
+    } else if (sexo === 2) {
         logger.silly('Entrando a la validacion step 2 de sexo 2.');
         let resp = { isValid: true, femenino: true, formData }
         return resp;
@@ -197,26 +193,21 @@ const postSteptwo = async (formData) => {
 // -----> POST Service Validate Step 3 ####
 const postStepThree = async (formData) => {
     logger.silly('Entrando a la validacion Step 3 tcma');
-    if (typeof formData === "string") {
-        formData = JSON.parse(formData);
-    }
-
     let resp = {
         isValid: false,
         formData
     }
 
     const { entregaNumero } = formData;
-
     logger.silly(`Calle de entrega ${entregaNumero}`);
 
-    if (!entregaNumero || entregaNumero === '' || entregaNumero.length != 4){
+    if (!entregaNumero || entregaNumero === 11){
         logger.silly('Entrando Error dato incorrecto');
         throw new CodeError("Dato de entrada incorrecto", 400, resp);
-    } else if (entregaNumero === '2222') {
+    } else if (entregaNumero === 2222) {
         logger.silly('Entrando Error Servicio no disponible');
         throw new CodeError('Servicio no disponible', 504)
-    } else if(entregaNumero === '3333'){
+    } else if(entregaNumero === 3333){
         logger.silly('Los datos step 3 son correctos. Mock OK');
         let resp = { isValid: true, formData }
         return resp;

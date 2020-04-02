@@ -1387,7 +1387,7 @@
     "/tcma/personalData" : {
       "post" : {
         "tags" : [ "TCMA" ],
-        "description" : "Endpoint para validar Step 1 (TCMA). Casos de prueba: nombre = Fernando > Http status code response: 400, nombre = Julio > Http status code response: 504, Cualquier otro caso > Http status code response: 200",
+        "description" : "Endpoint EnvioFormulario Paso 1 (TCMA). Casos de prueba: nombre = Fernando > Http status code response: 400, nombre = Julio > Http status code response: 504, Cualquier otro caso > Http status code response: 400",
         "consumes": "application/json",
         "requestBody" : {
           "content" : {
@@ -1503,7 +1503,7 @@
     "/tcma/sentData" : {
       "post" : {
         "tags" : [ "TCMA" ],
-        "description" : "Endpoint para validar Step 2 (TCMA). Casos de prueba: sexo = 1 > Http status code response: 200, sexo = 2 > Http status code response: 200, Cualquier otro caso > Http status code response: 400",
+        "description" : "Endpoint Envio envio formulario Paso 2 (TCMA). Casos de prueba: sexo = 1 > Http status code response: 200, sexo = 2 > Http status code response: 200, Cualquier otro caso > Http status code response: 400",
         "consumes": "application/json",
         "requestBody" : {
           "content" : {
@@ -1645,7 +1645,7 @@
     "/tcma/aditionalCardData" : {
       "post" : {
         "tags" : [ "TCMA" ],
-        "description" : "Endpoint para validar Step 3 (TCMA). Casos de prueba: entregaNumero = 1111 > Http status code response: 400, entregaNumero = 2222 > Http status code response: 504, entregaNumero = 3333 > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
+        "description" : "Endpoint Envio formulario Paso 3 (TCMA). Casos de prueba: entregaNumero = 1111 > Http status code response: 400, entregaNumero = 2222 > Http status code response: 504, entregaNumero = 3333 > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
         "consumes": "application/json",
         "requestBody" : {
           "content" : {
@@ -1827,7 +1827,7 @@
     "/tcma/sendRequest" : {
       "post" : {
         "tags" : [ "TCMA" ],
-        "description" : "Endpoint para validar Step 4 (TCMA). Casos de prueba: nombreAdicional = Fernando > Http status code response: 400, nombreAdicional = Julio > Http status code response: 504, nombreAdicional = Luis > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
+        "description" : "Endpoint Envio formulario Paso 4 (TCMA). Casos de prueba: nombreAdicional = Fernando > Http status code response: 400, nombreAdicional = Julio > Http status code response: 504, nombreAdicional = Luis > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
         "consumes": "application/json",
         "requestBody" : {
           "content" : {
