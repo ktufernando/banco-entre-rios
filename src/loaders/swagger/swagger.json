@@ -1403,6 +1403,664 @@
           }
         }
       }
+    },
+    "/tcma/personalData" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint para validar Step 1 (TCMA). Casos de prueba: nombre = Fernando > Http status code response: 400, nombre = Julio > Http status code response: 504, Cualquier otro caso > Http status code response: 200",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/personalData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Http status code response 200",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrecto",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"Fernando\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "nombre": "fernando",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"Julio\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Nombre no encontrado",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Nombre no encontrado"
+                    },
+                    "payload" : {
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    },
+    "/tcma/sentData" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint para validar Step 2 (TCMA). Casos de prueba: sexo = 1 > Http status code response: 200, sexo = 2 > Http status code response: 200, Cualquier otro caso > Http status code response: 400",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sentData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok 1 Masculino",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Http status code response 200",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : 
+                    {
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Caso ok 2 Femenino",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Http status code response 200",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : 
+                    {
+                      "sexo": 2,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Sexo no especficado",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Sexo no especificado"
+                    },
+                    "payload" :
+                    {
+                      "sexo": "no especificado",
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    },
+    "/tcma/aditionalCardData" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint para validar Step 3 (TCMA). Casos de prueba: entregaNumero = 1111 > Http status code response: 400, entregaNumero = 2222 > Http status code response: 504, entregaNumero = 3333 > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/aditionalCardData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero =  \"3333\"",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "string",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrecto",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"1111\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 1111,
+                      "entregaPiso": 2,
+                      "entregaDepto": "string",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"2222\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406" : {
+            "description" : "Calle no encontrada",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Calle no encontrada"
+                    },
+                    "payload" : {
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": "3421",
+                      "entregaPiso": 2,
+                      "entregaDepto": "string",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    },
+    "/tcma/sendRequest" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint para validar Step 4 (TCMA). Casos de prueba: nombreAdicional = Fernando > Http status code response: 400, nombreAdicional = Julio > Http status code response: 504, nombreAdicional = Luis > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sendRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero =  \"Luis\"",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "nombreAdicional": "luis",
+                      "apellidoAdicional": "fernandez",
+                      "dniAdicional": 89764534,
+                      "idPaisNacionalidadAdicional": 323,
+                      "idPaisNacimientoAdicional": 32,
+                      "SexoAdicional": 1,
+                      "FechaNacimientoAdicional": "20%03%1989",
+                      "EmailAdicional": "leando@gmail.com",
+                      "CelularAreaAdicional": 1132233223,
+                      "CelularNumeroAdicional": 1132233443,
+                      "EstadoCivilAdicional": 1,
+                      "CuilAdicional": 20897645342,        
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "d",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrecto",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"Fernando\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "nombreAdicional": "fernando",
+                      "apellidoAdicional": "fernandez",
+                      "dniAdicional": 89764534,
+                      "idPaisNacionalidadAdicional": 323,
+                      "idPaisNacimientoAdicional": 32,
+                      "SexoAdicional": 1,
+                      "FechaNacimientoAdicional": "20%03%1989",
+                      "EmailAdicional": "leando@gmail.com",
+                      "CelularAreaAdicional": 1132233223,
+                      "CelularNumeroAdicional": 1132233443,
+                      "EstadoCivilAdicional": 1,
+                      "CuilAdicional": 20897645342,        
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "d",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }  
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"Julio\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406" : {
+            "description" : "Calle no encontrada",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Calle no encontrada"
+                    },
+                    "payload" : {
+                      "nombreAdicional": "mauro",
+                      "apellidoAdicional": "fernandez",
+                      "dniAdicional": 89764534,
+                      "idPaisNacionalidadAdicional": 323,
+                      "idPaisNacimientoAdicional": 32,
+                      "SexoAdicional": 1,
+                      "FechaNacimientoAdicional": "20%03%1989",
+                      "EmailAdicional": "leando@gmail.com",
+                      "CelularAreaAdicional": 1132233223,
+                      "CelularNumeroAdicional": 1132233443,
+                      "EstadoCivilAdicional": 1,
+                      "CuilAdicional": 20897645342,        
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "d",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }  
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
     }
 },
   
@@ -1462,7 +2120,7 @@
           "codigoPostal" : {
             "type" : "string"
           }
-        },
+        },     
         "example" : {
           "cuit" : "20957655547",
           "email" : "rodolfo@gmail.com",
@@ -1484,6 +2142,448 @@
           "fechaNacimiento" : "03/03/1987",
           "codigoPostal" : "1426"
         }
+      },
+      "personalData" : {
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "dni" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
+      },
+      "sentData" : {
+        "type" : "object",
+        "properties" : {
+          "sexo" : {
+            "type" : "number"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "estadoCivil" : {
+            "type" : "number"
+          },
+          "idPaisNacionalidad" : {
+            "type" : "number"
+          },
+          "idPaisNacimiento" : {
+            "type" : "number"
+          },
+          "domicilioCalle" : {
+            "type" : "string"
+          },
+          "domicilioNumero" : {
+            "type" : "number"
+          },
+          "domicilioPiso" : {
+            "type" : "number"
+          },
+          "domicilioDpto" : {
+            "type" : "string"
+          },
+          "domicilioCP" : {
+            "type" : "string"
+          },
+          "idLocalidades" : {
+            "type" : "number"
+          },
+          "codigoActividad" : {
+            "type" : "string"
+          },
+          "personaEP" : {
+            "type" : "number"
+          },
+          "dni" : {
+            "type" : "number"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "sexo": 1,
+          "fechaNacimiento": "20%03%1989",
+          "estadoCivil": 1,
+          "idPaisNacionalidad": 1,
+          "idPaisNacimiento": 1,
+          "domicilioCalle": "conde",
+          "domicilioNumero": 1468,
+          "domicilioPiso": 3,
+          "domicilioDpto": "d",
+          "domicilioCP": 1232,
+          "idLocalidad": 1,
+          "codigoActividad": "000009",
+          "personaEP": "2",          
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
+      }, 
+      "aditionalCardData" : {
+        "type" : "object",
+        "properties" : {
+          "entregaCalle" : {
+            "type" : "string"
+          },
+          "entregaNumero" : {
+            "type" : "number"
+          },
+          "entregaPiso" : {
+            "type" : "number"
+          },
+          "entregaDpto" : {
+            "type" : "string"
+          },
+          "entregaCP" : {
+            "type" : "string"
+          },
+          "entregaIdLocalidad" : {
+            "type" : "number"
+          },
+          "adicional" : {
+            "type" : "boolean"
+          },
+          "g-recaptcha-response" : {
+            "type" : "string"
+          },
+          "estadoCivil" : {
+            "type" : "number"
+          },
+          "idOrigen" : {
+            "type" : "number"
+          },
+          "sexo" : {
+            "type" : "number"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "idPaisNacionalidad" : {
+            "type" : "number"
+          },
+          "idPaisNacimiento" : {
+            "type" : "number"
+          },
+          "domicilioCalle" : {
+            "type" : "string"
+          },
+          "domicilioNumero" : {
+            "type" : "number"
+          },
+          "domicilioPiso" : {
+            "type" : "number"
+          },
+          "domicilioDpto" : {
+            "type" : "string"
+          },
+          "domicilioCP" : {
+            "type" : "string"
+          },
+          "idLocalidades" : {
+            "type" : "number"
+          },
+          "codigoActividad" : {
+            "type" : "string"
+          },
+          "personaEP" : {
+            "type" : "number"
+          },
+          "dni" : {
+            "type" : "number"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "entregaCalle": "paraguay",
+          "entregaNumero": 3333,
+          "entregaPiso": 2,
+          "entregaDepto": "string",
+          "entregaCP": "string",
+          "entrgaIdLocalidad": 245, 
+          "adicional": true,
+          "g-recaptcha-response": "string",
+          "idOrigen": 2,
+          "sexo": 1,
+          "fechaNacimiento": "20%03%1989",
+          "estadoCivil": 1,
+          "idPaisNacionalidad": 1,
+          "idPaisNacimiento": 1,
+          "domicilioCalle": "conde",
+          "domicilioNumero": 1468,
+          "domicilioPiso": 3,
+          "domicilioDpto": "d",
+          "domicilioCP": 1232,
+          "idLocalidad": 1,
+          "codigoActividad": "000009",
+          "personaEP": "2",          
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
+      },
+      "sendRequest" : {
+        "type" : "object",
+        "properties" : {
+          "nombreAdicional" : {
+            "type" : "string"
+          },
+          "apellidoAdicional" : {
+            "type" : "string"
+          },
+          "dniAdicional" : {
+            "type" : "number"
+          },
+          "idPaisNacionalidadAdicional" : {
+            "type" : "number"
+          },
+          "idPaisNacimientoAdicional" : {
+            "type" : "number"
+          },
+          "sexoAdicional" : {
+            "type" : "string"
+          },
+          "fechaNacimientoAdicional" : {
+            "type" : "string"
+          },
+          "emailAdicional" : {
+            "type" : "string"
+          },
+          "celularNumeroAdicional" : {
+            "type" : "number"
+          },
+          "estadoCivilAdicional" : {
+            "type" : "number"
+          },
+          "cuilAdicional" : {
+            "type" : "number"
+          },
+          "entregaNumero" : {
+            "type" : "number"
+          },
+          "entregaPiso" : {
+            "type" : "number"
+          },
+          "entregaDpto" : {
+            "type" : "string"
+          },
+          "entregaCP" : {
+            "type" : "string"
+          },
+          "entregaIdLocalidad" : {
+            "type" : "number"
+          },
+          "adicional" : {
+            "type" : "boolean"
+          },
+          "g-recaptcha-response" : {
+            "type" : "string"
+          },
+          "estadoCivil" : {
+            "type" : "number"
+          },
+          "idOrigen" : {
+            "type" : "number"
+          },
+          "sexo" : {
+            "type" : "number"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "idPaisNacionalidad" : {
+            "type" : "number"
+          },
+          "idPaisNacimiento" : {
+            "type" : "number"
+          },
+          "domicilioCalle" : {
+            "type" : "string"
+          },
+          "domicilioNumero" : {
+            "type" : "number"
+          },
+          "domicilioPiso" : {
+            "type" : "number"
+          },
+          "domicilioDpto" : {
+            "type" : "string"
+          },
+          "domicilioCP" : {
+            "type" : "string"
+          },
+          "idLocalidades" : {
+            "type" : "number"
+          },
+          "codigoActividad" : {
+            "type" : "string"
+          },
+          "personaEP" : {
+            "type" : "number"
+          },
+          "dni" : {
+            "type" : "number"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "nombreAdicional": "fernando ",
+          "apellidoAdicional": "fernandez",
+          "dniAdicional": 89764534,
+          "idPaisNacionalidadAdicional": 323,
+          "idPaisNacimientoAdicional": 32,
+          "SexoAdicional": 1,
+          "FechaNacimientoAdicional": "20%03%1989",
+          "EmailAdicional": "leando@gmail.com",
+          "CelularAreaAdicional": 1132233223,
+          "CelularNumeroAdicional": 1132233443,
+          "EstadoCivilAdicional": 1,
+          "CuilAdicional": 20897645342,        
+          "entregaCalle": "paraguay",
+          "entregaNumero": 3333,
+          "entregaPiso": 2,
+          "entregaDepto": "d",
+          "entregaCP": "string",
+          "entrgaIdLocalidad": 245, 
+          "adicional": true,
+          "g-recaptcha-response": "string",
+          "idOrigen": 2,
+          "sexo": 1,
+          "fechaNacimiento": "20%03%1989",
+          "estadoCivil": 1,
+          "idPaisNacionalidad": 1,
+          "idPaisNacimiento": 1,
+          "domicilioCalle": "conde",
+          "domicilioNumero": 1468,
+          "domicilioPiso": 3,
+          "domicilioDpto": "d",
+          "domicilioCP": 1232,
+          "idLocalidad": 1,
+          "codigoActividad": "000009",
+          "personaEP": "2",          
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
       }
     }
   }
