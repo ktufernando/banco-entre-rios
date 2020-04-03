@@ -1,0 +1,111 @@
+{
+    "respuestaCuil": {
+        "cuil": "20111111112"
+    },
+    "respuestaPaises": [
+        {
+          "value": 58,
+          "label": "ARGENTINA",
+          "code": "80"
+        },
+        {
+          "value": 181,
+          "label": "ARMENIA",
+          "code": "50"
+        },
+        {
+          "value": 68,
+          "label": "ARUBA",
+          "code": "92"
+        },
+        {
+          "value": 182,
+          "label": "ARUBA",
+          "code": "52"
+        },
+        {
+          "value": 69,
+          "label": "ASCENCION",
+          "code": "93"
+        },
+        {
+          "value": 239,
+          "label": "ASCENCION",
+          "code": "236"
+        },
+        {
+          "value": 20,
+          "label": "AUSTRALIA",
+          "code": "21"
+        },
+        {
+          "value": 13,
+          "label": "AUSTRIA",
+          "code": "13"
+        }
+    ],
+    "respuestaActividades" : [
+      {
+          "value": "000007",
+          "label": "JUBILADO",
+          "code": "212"
+      },
+      {
+        "value": "000008",
+        "label": "ESTUDIANTE",
+        "code": "212"
+      },
+      {
+        "value": "000009",
+        "label": "AMA DE CASA",
+        "code": "321"
+      }
+    ],
+    "respuestaEstadoCivil": [
+    {
+      "value": "1",
+      "label": "Soltero/a"
+    },
+    {
+      "value": "2",
+      "label": "Casado/a"
+    },
+    {
+      "value": "3",
+      "label": "Separado/a"
+    },
+    {
+      "value": "4",
+      "label": "Divorciado/a"
+    },
+    {
+      "value": "5",
+      "label": "Viudo/a"
+    },
+    {
+      "value": "6",
+      "label": "Unión Convivencial Registrada"
+    },
+    {
+      "value": "7",
+      "label": "Unión Convivencial No Registrada"
+    }
+    ],
+    "respuestaLocalidades": [ 
+    {
+      "label": "CAPITAL FEDERAL",
+      "postalCodeId": 123,
+      "postalCode": "1426",
+      "provinceId": 1,
+      "province": "CAPITAL FEDERAL",
+      "countryId":58, 
+      "country": "ARGENTINA"
+    }
+    ],
+    "respuestaFechaNacimiento": {
+    "isValid": true
+    },
+    "respuestaValidacionCuil": {
+    "isValid": true
+    }
+}

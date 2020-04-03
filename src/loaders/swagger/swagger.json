@@ -12,7 +12,7 @@
       "name" : "Apache 2.0",
       "url" : "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "version" : "0.0.2"
+    "version" : "0.0.3"
   },
   "servers" : [ {
       "url" : "http://localhost:3000/v1/ber",
@@ -307,7 +307,7 @@
     "/pymes/validateCuit/{cuit}" : {
       "post" : {
         "tags" : [ "Pyme" ],
-        "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isMonotributista: false",
+        "description" : "Endpoint para validar Cuit(pyme). Casos de prueba: Cuit menor o mayor a 11 caracteres > CUIT Invalido, Cuit igual a \"11111111111\" > CUIT no valido como empresa, Cuit igual a \"22222222222\" > Servicio del grupo no disponible, Cuit igual a \"33333333333\" > OK: isMonotributista: true, Cualquier otro caso > OK: isCompany: true",
         "parameters" : [ {
           "name" : "cuit",
           "in" : "path",
@@ -318,19 +318,20 @@
         } ],
         "responses" : {
           "200" : {
-            "description" : "Cuit igual a \"33333333333\"",
+            "description" : "Http status code response 200, mensaje OK",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Http status code response 200 mensaje OK",
+                  "description" : "Cuit valido y es monotributista",
                   "example" : {
                     "error" : false,
                     "message" : "OK",
                     "status" : 200,
                     "payload" : {
                       "isValid" : true,
-                      "isMonotributista" : false
+                      "isMonotributista" : true,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -338,19 +339,20 @@
             }
           },
           "400" : {
-            "description" : "Cuit menor o mayor a 11 caracteres",
+            "description" : "Http status code response 400",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Mensaje \"El CUIT es invalido\"",
+                  "description" : "CUIT invalido",
                   "example" : {
                     "error" : {
                       "message" : "El Cuit es invalido"
                     },
                     "payload" : {
                       "isValid" : false,
-                      "isMonotributista" : false
+                      "isMonotributista" : false,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -358,19 +360,20 @@
             }
           },
           "402" : {
-            "description" : "Cuit igual a \"11111111111\"",
+            "description" : "Http status code response 402",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Mensaje \"CUIT no valido como empresa\"",
+                  "description" : "CUIT no valido como empresa",
                   "example" : {
                     "error" : {
                       "message" : "CUIT no valido como empresa"
                     },
                     "payload" : {
                       "isValid" : false,
-                      "isMonotributista" : false
+                      "isMonotributista" : false,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -378,19 +381,20 @@
             }
           },
           "504" : {
-            "description" : "Cuit igual a \"22222222222\"",
+            "description" : "Http status code response 504",
             "content" : {
               "application/json" : {
                 "schema" : {
                   "type" : "object",
-                  "description" : "Mensaje \"Servicio del grupo no disponible\"",
+                  "description" : "Servicio del grupo no disponible",
                   "example" : {
                     "error" : {
                       "message" : "Servicio del grupo no disponible"
                     },
                     "payload" : {
                       "isValid" : false,
-                      "isMonotributista" : false
+                      "isMonotributista" : false,
+                      "isCompany" : false
                     }
                   }
                 }
@@ -674,54 +678,44 @@
                     "status" : 200,
                     "payload" :  [
                       {
-                        "id": 58,
-                        "descripcion": "ARGENTINA",
-                        "codigo": "80"
+                        "value": 58,
+                        "label": "ARGENTINA",
+                        "code": "80"
                       },
                       {
-                        "id": 181,
-                        "descripcion": "ARMENIA",
-                        "codigo": "50"
+                        "value": 181,
+                        "label": "ARMENIA",
+                        "code": "50"
                       },
                       {
-                        "id": 68,
-                        "descripcion": "ARUBA",
-                        "codigo": "92"
+                        "value": 68,
+                        "label": "ARUBA",
+                        "code": "92"
                       },
                       {
-                        "id": 182,
-                        "descripcion": "ARUBA",
-                        "codigo": "52"
+                        "value": 182,
+                        "label": "ARUBA",
+                        "code": "52"
                       },
                       {
-                        "id": 69,
-                        "descripcion": "ASCENCION",
-                        "codigo": "93"
+                        "value": 69,
+                        "label": "ASCENCION",
+                        "code": "93"
                       },
                       {
-                        "id": 239,
-                        "descripcion": "ASCENCION",
-                        "codigo": "236"
+                        "value": 239,
+                        "label": "ASCENCION",
+                        "code": "236"
                       },
                       {
-                        "id": 20,
-                        "descripcion": "AUSTRALIA",
-                        "codigo": "21"
+                        "value": 20,
+                        "label": "AUSTRALIA",
+                        "code": "21"
                       },
                       {
-                        "id": 13,
-                        "descripcion": "AUSTRIA",
-                        "codigo": "13"
-                      },
-                      {
-                        "id": 183,
-                        "descripcion": "AZERBAIDZHA",
-                        "codigo": "59"
-                      },
-                      {
-                        "id": 184,
-                        "descripcion": "BAHAMAS",
-                        "codigo": "60"
+                        "value": 13,
+                        "label": "AUSTRIA",
+                        "code": "13"
                       }
                     ]
                   }
@@ -885,9 +879,1170 @@
           }
         }
       }
+    },
+    "/tcma/getCUIL/{dni}" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para Obtener Cuil. Casos de prueba: DNI  = \"11111\" -> El Dni es invalido. DNI = \"11111111\" -> OK. DNI = \"22222222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "dni",
+          "in" : "path",
+          "type":"string",
+          "description" : "dni",
+          "required" : true,
+          "example" : "11111111"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "cuil": "20111111112"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El DNI es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El DNI es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El DNI es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/getCountries" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para obtener el listado de paises",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Listado de paises",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" :   [
+                      {
+                        "value": 58,
+                        "label": "ARGENTINA",
+                        "code": "80"
+                      },
+                      {
+                        "value": 181,
+                        "label": "ARMENIA",
+                        "code": "50"
+                      },
+                      {
+                        "value": 68,
+                        "label": "ARUBA",
+                        "code": "92"
+                      },
+                      {
+                        "value": 182,
+                        "label": "ARUBA",
+                        "code": "52"
+                      },
+                      {
+                        "value": 69,
+                        "label": "ASCENCION",
+                        "code": "93"
+                      },
+                      {
+                        "value": 239,
+                        "label": "ASCENCION",
+                        "code": "236"
+                      },
+                      {
+                        "value": 20,
+                        "label": "AUSTRALIA",
+                        "code": "21"
+                      },
+                      {
+                        "value": 13,
+                        "label": "AUSTRIA",
+                        "code": "13"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/getActivities/{cuil}" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111111\" -> OK. Cuil = \"22222222222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "cuil",
+          "in" : "path",
+          "type":"string",
+          "description" : "cuil",
+          "required" : true,
+          "example" : "11111111111"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": [
+                      {
+                          "value": "000007",
+                          "label": "JUBILADO",
+                          "code": "212"
+                      },
+                      {
+                        "value": "000008",
+                        "label": "ESTUDIANTE",
+                        "code": "212"
+                      },
+                      {
+                        "value": "000009",
+                        "label": "AMA DE CASA",
+                        "code": "321"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El Cuil es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El Cuil es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El Cuil es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/getEstadoCivil" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para obtener el listado de estados civiles",
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Listado de estados civiles",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : [
+                      {
+                        "value": "1",
+                        "label": "Soltero/a"
+                      },
+                      {
+                        "value": "2",
+                        "label": "Casado/a"
+                      },
+                      {
+                        "value": "3",
+                        "label": "Separado/a"
+                      },
+                      {
+                        "value": "4",
+                        "label": "Divorciado/a"
+                      },
+                      {
+                        "value": "5",
+                        "label": "Viudo/a"
+                      },
+                      {
+                        "value": "6",
+                        "label": "Unión Convivencial Registrada"
+                      },
+                      {
+                        "value": "7",
+                        "label": "Unión Convivencial No Registrada"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/getLocalities/{postalCode}" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para Obtener La Localidad. Casos de prueba: Code  = \"111\" -> El Codigo Postal es invalido. Code = \"1426\" -> El Codigo Postal es Valido. Code = \"222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "postalCode",
+          "in" : "path",
+          "type":"string",
+          "description" : "postalCode",
+          "required" : true,
+          "example" : "1426"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - El Codigo Postal es Valido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": [ 
+                      {
+                        "label": "CAPITAL FEDERAL",
+                        "postalCodeId": 123,
+                        "postalCode": "1426",
+                        "provinceId": 1,
+                        "province": "CAPITAL FEDERAL",
+                        "countryId":58, 
+                        "country": "ARGENTINA"
+                      }
+                    ] 
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El Codigo Postal es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El Codigo Postal es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El Codigo Postal es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/validateApplicantAge/{applicantDayOfBirth}" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para validar una fecha de nacimiento. Casos de prueba: Fecha de nacimiento = \"10%2F13%2F1980\" -> La fecha de nacimiento es invalida. Fecha de nacimiento = \"10%2F01%2F3000\" -> La fecha de nacimiento es mayor a la fecha actual. Fecha de nacimiento = \"10%2F01%2F1980\" -> OK",
+        "parameters" : [ {
+          "name" : "applicantDayOfBirth",
+          "in" : "path",
+          "type":"string",
+          "description" : "Fecha de nacimiento",
+          "required" : true,
+          "example" : "10%2F01%2F1980"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - Fecha valida",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - Fecha de nacimiento invalida",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response fecha de nacimiento invalida",
+                  "example" : {
+                    "error": {
+                        "message": "La fecha de nacimiento en invalida"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - Fecha de nacimiento es mayor a la fecha actual",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Fecha de nacimiento es mayor a la fecha actual",
+                  "example" :{
+                    "error": {
+                        "message": "Fecha de nacimiento es mayor a la fecha actual"
+                    },
+                    "payload": {
+                        "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/validateCuil/{cuil}" : {
+      "get" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Servicio para Validar Cuil. Casos de prueba: Cuil  = \"11111\" -> El Cuil es invalido. Cuil = \"11111111111\" -> OK. Cuil = \"22222222222\" -> Servicio no disponible",
+        "parameters" : [ {
+          "name" : "cuil",
+          "in" : "path",
+          "type":"string",
+          "description" : "cuil",
+          "required" : true,
+          "example" : "11111111111"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Http status code: 200 - OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response OK",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload": {
+                      "isValid": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Http status code response: 400 - El Cuil es invalido",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response El Cuil es invalido",
+                  "example" : {
+                    "error": {
+                        "message": "El Cuil es invalido"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Http status code response: 504 - Servicio no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Response Servicio no disponible",
+                  "example" :{
+                    "error": {
+                        "message": "Servicio no disponible"
+                    },
+                    "payload": {
+                        "isValid": false
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tcma/personalData" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint EnvioFormulario Paso 1 (TCMA). Casos de prueba: nombre = Fernando > Http status code response: 400, nombre = Julio > Http status code response: 504, Cualquier otro caso > Http status code response: 400",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/personalData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Http status code response 200",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrecto",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"Fernando\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "nombre": "fernando",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"Julio\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Nombre no encontrado",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Nombre no encontrado"
+                    },
+                    "payload" : {
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    },
+    "/tcma/sentData" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint Envio envio formulario Paso 2 (TCMA). Casos de prueba: sexo = 1 > Http status code response: 200, sexo = 2 > Http status code response: 200, Cualquier otro caso > Http status code response: 400",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sentData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok 1 Masculino",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Http status code response 200",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : 
+                    {
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200" : {
+            "description" : "Caso ok 2 Femenino",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "Http status code response 200",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : 
+                    {
+                      "sexo": 2,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Sexo no especficado",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "nombre = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Sexo no especificado"
+                    },
+                    "payload" :
+                    {
+                      "sexo": "no especificado",
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    },
+    "/tcma/aditionalCardData" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint Envio formulario Paso 3 (TCMA). Casos de prueba: entregaNumero = 1111 > Http status code response: 400, entregaNumero = 2222 > Http status code response: 504, entregaNumero = 3333 > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/aditionalCardData"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero =  \"3333\"",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "string",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrecto",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"1111\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 1111,
+                      "entregaPiso": 2,
+                      "entregaDepto": "string",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"2222\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406" : {
+            "description" : "Calle no encontrada",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Calle no encontrada"
+                    },
+                    "payload" : {
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": "3421",
+                      "entregaPiso": 2,
+                      "entregaDepto": "string",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    },
+    "/tcma/sendRequest" : {
+      "post" : {
+        "tags" : [ "TCMA" ],
+        "description" : "Endpoint Envio formulario Paso 4 (TCMA). Casos de prueba: nombreAdicional = Fernando > Http status code response: 400, nombreAdicional = Julio > Http status code response: 504, nombreAdicional = Luis > Http status code response: 200, Cualquier otro caso > Http status code response: 406",
+        "consumes": "application/json",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/sendRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Caso ok",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero =  \"Luis\"",
+                  "example" : {
+                    "error" : false,
+                    "message" : "OK",
+                    "status" : 200,
+                    "payload" : {
+                      "nombreAdicional": "luis",
+                      "apellidoAdicional": "fernandez",
+                      "dniAdicional": 89764534,
+                      "idPaisNacionalidadAdicional": 323,
+                      "idPaisNacimientoAdicional": 32,
+                      "SexoAdicional": 1,
+                      "FechaNacimientoAdicional": "20%03%1989",
+                      "EmailAdicional": "leando@gmail.com",
+                      "CelularAreaAdicional": 1132233223,
+                      "CelularNumeroAdicional": 1132233443,
+                      "EstadoCivilAdicional": 1,
+                      "CuilAdicional": 20897645342,        
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "d",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    } 
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Dato de entrada incorrecto",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"Fernando\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Dato de entrada incorrecto"
+                    },
+                    "payload" : {
+                      "nombreAdicional": "fernando",
+                      "apellidoAdicional": "fernandez",
+                      "dniAdicional": 89764534,
+                      "idPaisNacionalidadAdicional": 323,
+                      "idPaisNacimientoAdicional": 32,
+                      "SexoAdicional": 1,
+                      "FechaNacimientoAdicional": "20%03%1989",
+                      "EmailAdicional": "leando@gmail.com",
+                      "CelularAreaAdicional": 1132233223,
+                      "CelularNumeroAdicional": 1132233443,
+                      "EstadoCivilAdicional": 1,
+                      "CuilAdicional": 20897645342,        
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "d",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }  
+                  }
+                }
+              }
+            }
+          },
+          "504" : {
+            "description" : "Servicio del grupo no disponible",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"Julio\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Servicio del grupo no disponible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "406" : {
+            "description" : "Calle no encontrada",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "description" : "entregaNumero = \"cualquiera que no este en los casos\"",
+                  "example" : {
+                    "error" : {
+                      "message" : "Calle no encontrada"
+                    },
+                    "payload" : {
+                      "nombreAdicional": "mauro",
+                      "apellidoAdicional": "fernandez",
+                      "dniAdicional": 89764534,
+                      "idPaisNacionalidadAdicional": 323,
+                      "idPaisNacimientoAdicional": 32,
+                      "SexoAdicional": 1,
+                      "FechaNacimientoAdicional": "20%03%1989",
+                      "EmailAdicional": "leando@gmail.com",
+                      "CelularAreaAdicional": 1132233223,
+                      "CelularNumeroAdicional": 1132233443,
+                      "EstadoCivilAdicional": 1,
+                      "CuilAdicional": 20897645342,        
+                      "entregaCalle": "paraguay",
+                      "entregaNumero": 3333,
+                      "entregaPiso": 2,
+                      "entregaDepto": "d",
+                      "entregaCP": "string",
+                      "entrgaIdLocalidad": 245, 
+                      "adicional": true,
+                      "g-recaptcha-response": "string",
+                      "idOrigen": 2,
+                      "sexo": 1,
+                      "fechaNacimiento": "20%03%1989",
+                      "estadoCivil": 1,
+                      "idPaisNacionalidad": 1,
+                      "idPaisNacimiento": 1,
+                      "domicilioCalle": "conde",
+                      "domicilioNumero": 1468,
+                      "domicilioPiso": 3,
+                      "domicilioDpto": "d",
+                      "domicilioCP": 1232,
+                      "idLocalidad": 1,
+                      "codigoActividad": "000009",
+                      "personaEP": "2",          
+                      "nombre": "luis",
+                      "apellido": "fernandez",
+                      "dni": "56634553",
+                      "email": "luisfernandez@gmail.com",
+                      "celularArea": 1154455335,
+                      "celularNumero": 1176655443,
+                      "telefonoArea": 1154455225,
+                      "telefonoNumero": 11533555224,
+                      "cuil": 20566345532
+                    }  
+                  }
+                }
+              }
+            }
+          }
+          
+        }
+      }
     }
-    
-  },
+},
   
   "components" : {
     "schemas" : {
@@ -945,7 +2100,7 @@
           "codigoPostal" : {
             "type" : "string"
           }
-        },
+        },     
         "example" : {
           "cuit" : "20957655547",
           "email" : "rodolfo@gmail.com",
@@ -967,6 +2122,448 @@
           "fechaNacimiento" : "03/03/1987",
           "codigoPostal" : "1426"
         }
+      },
+      "personalData" : {
+        "type" : "object",
+        "properties" : {
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "dni" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
+      },
+      "sentData" : {
+        "type" : "object",
+        "properties" : {
+          "sexo" : {
+            "type" : "number"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "estadoCivil" : {
+            "type" : "number"
+          },
+          "idPaisNacionalidad" : {
+            "type" : "number"
+          },
+          "idPaisNacimiento" : {
+            "type" : "number"
+          },
+          "domicilioCalle" : {
+            "type" : "string"
+          },
+          "domicilioNumero" : {
+            "type" : "number"
+          },
+          "domicilioPiso" : {
+            "type" : "number"
+          },
+          "domicilioDpto" : {
+            "type" : "string"
+          },
+          "domicilioCP" : {
+            "type" : "string"
+          },
+          "idLocalidades" : {
+            "type" : "number"
+          },
+          "codigoActividad" : {
+            "type" : "string"
+          },
+          "personaEP" : {
+            "type" : "number"
+          },
+          "dni" : {
+            "type" : "number"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "sexo": 1,
+          "fechaNacimiento": "20%03%1989",
+          "estadoCivil": 1,
+          "idPaisNacionalidad": 1,
+          "idPaisNacimiento": 1,
+          "domicilioCalle": "conde",
+          "domicilioNumero": 1468,
+          "domicilioPiso": 3,
+          "domicilioDpto": "d",
+          "domicilioCP": 1232,
+          "idLocalidad": 1,
+          "codigoActividad": "000009",
+          "personaEP": "2",          
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
+      }, 
+      "aditionalCardData" : {
+        "type" : "object",
+        "properties" : {
+          "entregaCalle" : {
+            "type" : "string"
+          },
+          "entregaNumero" : {
+            "type" : "number"
+          },
+          "entregaPiso" : {
+            "type" : "number"
+          },
+          "entregaDpto" : {
+            "type" : "string"
+          },
+          "entregaCP" : {
+            "type" : "string"
+          },
+          "entregaIdLocalidad" : {
+            "type" : "number"
+          },
+          "adicional" : {
+            "type" : "boolean"
+          },
+          "g-recaptcha-response" : {
+            "type" : "string"
+          },
+          "estadoCivil" : {
+            "type" : "number"
+          },
+          "idOrigen" : {
+            "type" : "number"
+          },
+          "sexo" : {
+            "type" : "number"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "idPaisNacionalidad" : {
+            "type" : "number"
+          },
+          "idPaisNacimiento" : {
+            "type" : "number"
+          },
+          "domicilioCalle" : {
+            "type" : "string"
+          },
+          "domicilioNumero" : {
+            "type" : "number"
+          },
+          "domicilioPiso" : {
+            "type" : "number"
+          },
+          "domicilioDpto" : {
+            "type" : "string"
+          },
+          "domicilioCP" : {
+            "type" : "string"
+          },
+          "idLocalidades" : {
+            "type" : "number"
+          },
+          "codigoActividad" : {
+            "type" : "string"
+          },
+          "personaEP" : {
+            "type" : "number"
+          },
+          "dni" : {
+            "type" : "number"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "entregaCalle": "paraguay",
+          "entregaNumero": 3333,
+          "entregaPiso": 2,
+          "entregaDepto": "string",
+          "entregaCP": "string",
+          "entrgaIdLocalidad": 245, 
+          "adicional": true,
+          "g-recaptcha-response": "string",
+          "idOrigen": 2,
+          "sexo": 1,
+          "fechaNacimiento": "20%03%1989",
+          "estadoCivil": 1,
+          "idPaisNacionalidad": 1,
+          "idPaisNacimiento": 1,
+          "domicilioCalle": "conde",
+          "domicilioNumero": 1468,
+          "domicilioPiso": 3,
+          "domicilioDpto": "d",
+          "domicilioCP": 1232,
+          "idLocalidad": 1,
+          "codigoActividad": "000009",
+          "personaEP": "2",          
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
+      },
+      "sendRequest" : {
+        "type" : "object",
+        "properties" : {
+          "nombreAdicional" : {
+            "type" : "string"
+          },
+          "apellidoAdicional" : {
+            "type" : "string"
+          },
+          "dniAdicional" : {
+            "type" : "number"
+          },
+          "idPaisNacionalidadAdicional" : {
+            "type" : "number"
+          },
+          "idPaisNacimientoAdicional" : {
+            "type" : "number"
+          },
+          "sexoAdicional" : {
+            "type" : "string"
+          },
+          "fechaNacimientoAdicional" : {
+            "type" : "string"
+          },
+          "emailAdicional" : {
+            "type" : "string"
+          },
+          "celularNumeroAdicional" : {
+            "type" : "number"
+          },
+          "estadoCivilAdicional" : {
+            "type" : "number"
+          },
+          "cuilAdicional" : {
+            "type" : "number"
+          },
+          "entregaNumero" : {
+            "type" : "number"
+          },
+          "entregaPiso" : {
+            "type" : "number"
+          },
+          "entregaDpto" : {
+            "type" : "string"
+          },
+          "entregaCP" : {
+            "type" : "string"
+          },
+          "entregaIdLocalidad" : {
+            "type" : "number"
+          },
+          "adicional" : {
+            "type" : "boolean"
+          },
+          "g-recaptcha-response" : {
+            "type" : "string"
+          },
+          "estadoCivil" : {
+            "type" : "number"
+          },
+          "idOrigen" : {
+            "type" : "number"
+          },
+          "sexo" : {
+            "type" : "number"
+          },
+          "fechaNacimiento" : {
+            "type" : "string"
+          },
+          "idPaisNacionalidad" : {
+            "type" : "number"
+          },
+          "idPaisNacimiento" : {
+            "type" : "number"
+          },
+          "domicilioCalle" : {
+            "type" : "string"
+          },
+          "domicilioNumero" : {
+            "type" : "number"
+          },
+          "domicilioPiso" : {
+            "type" : "number"
+          },
+          "domicilioDpto" : {
+            "type" : "string"
+          },
+          "domicilioCP" : {
+            "type" : "string"
+          },
+          "idLocalidades" : {
+            "type" : "number"
+          },
+          "codigoActividad" : {
+            "type" : "string"
+          },
+          "personaEP" : {
+            "type" : "number"
+          },
+          "dni" : {
+            "type" : "number"
+          },
+          "nombre" : {
+            "type" : "string"
+          },
+          "apellido" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "celularArea" : {
+            "type" : "number"
+          },
+          "celularNumero" : {
+            "type" : "number"
+          },
+          "telefonoArea" : {
+            "type" : "number"
+          },
+          "telefonoNumero" : {
+            "type" : "number"
+          },
+          "cuil" : {
+            "type" : "number"
+          }
+        },
+        "example" : {
+          "nombreAdicional": "fernando ",
+          "apellidoAdicional": "fernandez",
+          "dniAdicional": 89764534,
+          "idPaisNacionalidadAdicional": 323,
+          "idPaisNacimientoAdicional": 32,
+          "SexoAdicional": 1,
+          "FechaNacimientoAdicional": "20%03%1989",
+          "EmailAdicional": "leando@gmail.com",
+          "CelularAreaAdicional": 1132233223,
+          "CelularNumeroAdicional": 1132233443,
+          "EstadoCivilAdicional": 1,
+          "CuilAdicional": 20897645342,        
+          "entregaCalle": "paraguay",
+          "entregaNumero": 3333,
+          "entregaPiso": 2,
+          "entregaDepto": "d",
+          "entregaCP": "string",
+          "entrgaIdLocalidad": 245, 
+          "adicional": true,
+          "g-recaptcha-response": "string",
+          "idOrigen": 2,
+          "sexo": 1,
+          "fechaNacimiento": "20%03%1989",
+          "estadoCivil": 1,
+          "idPaisNacionalidad": 1,
+          "idPaisNacimiento": 1,
+          "domicilioCalle": "conde",
+          "domicilioNumero": 1468,
+          "domicilioPiso": 3,
+          "domicilioDpto": "d",
+          "domicilioCP": 1232,
+          "idLocalidad": 1,
+          "codigoActividad": "000009",
+          "personaEP": "2",          
+          "nombre": "luis",
+          "apellido": "fernandez",
+          "dni": "56634553",
+          "email": "luisfernandez@gmail.com",
+          "celularArea": 1154455335,
+          "celularNumero": 1176655443,
+          "telefonoArea": 1154455225,
+          "telefonoNumero": 11533555224,
+          "cuil": 20566345532
+        } 
       }
     }
   }
