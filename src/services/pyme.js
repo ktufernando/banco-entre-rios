@@ -22,8 +22,7 @@ const cuitValidator = async (cuit) => {
 
     let resp = {
         isValid: false,
-        isMonotributista: false,
-        isCompany: false
+        isMonotributista: false
     }
 
     if (!cuit || cuit === '' || cuit.length != 11) {
@@ -41,9 +40,8 @@ const cuitValidator = async (cuit) => {
         resp.isMonotributista = true;
         return resp;
     } else {
-        logger.silly('CUIT valido y es empresa');
+        logger.silly('CUIT valido pero no es monotributista');
         resp.isValid = true;
-        resp.isCompany = true;
         return resp;
     }
 }
