@@ -12,7 +12,7 @@
   "description": "BFF For Entre Rios Bank",
   "dependencies": {
     "app-root-path": "^3.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "errorhandler": "^1.5.1",
